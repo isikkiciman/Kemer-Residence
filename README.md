@@ -1,4 +1,4 @@
-# Romee Hotel - Modern Otel Web Sitesi
+# Kemer Residence - Modern Otel Web Sitesi
 
 Modern, responsive ve SEO uyumlu bir otel web sitesi. Next.js 14+, TypeScript ve Tailwind CSS ile geliştirilmiştir.
 
@@ -71,7 +71,7 @@ npm run lint
 ## 📁 Proje Yapısı
 
 ```
-romee-hotel/
+kemer-residence/
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx          # Ana layout

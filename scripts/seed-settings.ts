@@ -35,11 +35,11 @@ async function seedDefaultSettings() {
       create: {
         key: 'siteName',
         value: {
-          tr: 'Romee Hotel',
-          en: 'Romee Hotel',
-          de: 'Romee Hotel',
-          ru: 'Romee Hotel',
-          pl: 'Romee Hotel',
+          tr: 'Kemer Residence',
+          en: 'Kemer Residence',
+          de: 'Kemer Residence',
+          ru: 'Kemer Residence',
+          pl: 'Kemer Residence',
         },
       },
     });

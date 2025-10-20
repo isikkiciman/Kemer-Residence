@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { prisma } from '@/lib/prisma';
 
-const baseUrl = 'https://www.romeehotel.com';
+const baseUrl = 'https://www.kemerresidence.com';
 const locales = ['tr', 'en', 'de', 'ru', 'pl'];
 
 interface MultiLangText {

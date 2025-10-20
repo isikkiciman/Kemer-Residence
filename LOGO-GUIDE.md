@@ -55,7 +55,7 @@ Resim logo yerine text logo kullanmak isterseniz:
 // Mevcut Image component'ini değiştirin:
 <Link href="/" className="flex items-center gap-2">
   <span className="text-2xl md:text-3xl font-serif font-bold text-blue-600">
-    Romee Hotel
+    Kemer Residence
   </span>
 </Link>
 ```

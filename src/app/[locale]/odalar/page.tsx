@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Konforlu ve modern odalarımızı keşfedin. Standart, Deluxe ve Suite odalarımız arasından size en uygun olanı seçin.",
   keywords: ["otel odaları", "lüks oda", "standart oda", "deluxe oda", "suite oda", "konaklama"],
   openGraph: {
-    title: "Odalarımız - Romee Hotel",
+    title: "Odalarımız - Kemer Residence",
     description: "Konforlu ve modern odalarımızı keşfedin. Standart, Deluxe ve Suite odalarımız.",
     url: '/odalar',
     images: [
@@ -17,13 +17,13 @@ export const metadata: Metadata = {
         url: '/og-rooms.jpg',
         width: 1200,
         height: 630,
-        alt: 'Romee Hotel Odaları',
+        alt: 'Kemer Residence Odaları',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Odalarımız - Romee Hotel',
+    title: 'Odalarımız - Kemer Residence',
     description: 'Konforlu ve modern odalarımızı keşfedin',
   },
   alternates: {

@@ -1,4 +1,4 @@
-# 🏨 Romee Hotel - Admin Paneli Kullanım Rehberi
+# 🏨 Kemer Residence - Admin Paneli Kullanım Rehberi
 
 ## 🎨 Logo Değiştirme
 
@@ -29,10 +29,10 @@ Logo dosyanızı `/public/` klasörüne kopyalayın:
 
 ```bash
 # Terminalden:
-cp ~/Desktop/benim-logom.png /Users/isikkiciman/romee-hotel/public/logo.png
+cp ~/Desktop/benim-logom.png /Users/isikkiciman/kemer-residence/public/logo.png
 
-# veya SVG için:
-cp ~/Desktop/benim-logom.svg /Users/isikkiciman/romee-hotel/public/logo.svg
+# SVG için
+cp ~/Desktop/benim-logom.svg /Users/isikkiciman/kemer-residence/public/logo.svg
 ```
 
 Sonra admin panelinden URL'yi `/logo.png` veya `/logo.svg` olarak güncelleyin.
@@ -126,7 +126,7 @@ http://localhost:3001/admin
 
 Varsayılan logo: `/public/logo.svg`
 - Mavi otel ikonu
-- "Romee HOTEL" yazısı
+- "Kemer RESIDENCE" yazısı
 - 150x60 piksel
 - SVG format
 

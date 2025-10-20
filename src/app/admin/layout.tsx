@@ -7,7 +7,7 @@ import AdminHeader from "@/components/admin/AdminHeader";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Admin Panel - Romee Hotel",
+  title: "Admin Panel - Kemer Residence",
   description: "Hotel Management System",
 };
 

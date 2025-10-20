@@ -58,7 +58,7 @@ export default function AdminSidebar() {
             <Hotel className="text-white" size={18} />
           </div>
           <div>
-            <h1 className="text-base font-semibold text-gray-900">Romee Hotel</h1>
+            <h1 className="text-base font-semibold text-gray-900">Kemer Residence</h1>
             <p className="text-xs text-gray-500">Admin</p>
           </div>
         </div>

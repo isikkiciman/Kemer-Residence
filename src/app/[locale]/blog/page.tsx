@@ -15,10 +15,10 @@ interface MultiLangText {
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Seyahat ipuçları, otel haberleri ve konaklamayla ilgili faydalı bilgiler. Romee Hotel blog yazılarını keşfedin.",
-  keywords: ["otel blog", "seyahat ipuçları", "konaklama tavsiyeleri", "otel haberleri", "istanbul gezilecek yerler"],
+  description: "Seyahat ipuçları, otel haberleri ve konaklamayla ilgili faydalı bilgiler. Kemer Residence blog yazılarını keşfedin.",
+  keywords: ["otel blog", "seyahat", "konaklama ipuçları", "istanbul", "turizm"],
   openGraph: {
-    title: "Blog - Romee Hotel",
+    title: "Blog - Kemer Residence",
     description: "Seyahat ipuçları ve otel haberlerimiz",
     url: '/blog',
     images: [
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
         url: '/og-blog.jpg',
         width: 1200,
         height: 630,
-        alt: 'Romee Hotel Blog',
+        alt: 'Kemer Residence Blog',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Blog - Romee Hotel',
+    title: 'Blog - Kemer Residence',
     description: 'Seyahat ipuçları ve otel haberlerimiz',
   },
   alternates: {

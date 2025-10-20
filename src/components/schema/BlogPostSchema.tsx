@@ -31,10 +31,10 @@ export default function BlogPostSchema({
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Romee Hotel',
+      name: 'Kemer Residence',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.romeehotel.com/logo.svg',
+        url: 'https://www.kemerresidence.com/logo.svg',
       },
     },
     datePublished: publishedAt,

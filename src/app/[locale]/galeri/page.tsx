@@ -3,10 +3,10 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Galeri",
-  description: "Romee Hotel'in fotoğraf galerisi. Odalarımız, restoranımız ve otel olanaklarımızı görüntüleyin.",
-  keywords: ["otel galerisi", "otel fotoğrafları", "oda görselleri", "otel iç mekan", "otel dış görünüm"],
+  description: "Kemer Residence'in fotoğraf galerisi. Odalarımız, restoranımız ve otel olanaklarımızı görüntüleyin.",
+  keywords: ["otel galerisi", "otel fotoğrafları", "oda görselleri", "otel resimleri"],
   openGraph: {
-    title: "Galeri - Romee Hotel",
+    title: "Galeri - Kemer Residence",
     description: "Otelimizin fotoğraf galerisi",
     url: '/galeri',
     images: [
@@ -14,13 +14,13 @@ export const metadata: Metadata = {
         url: '/og-gallery.jpg',
         width: 1200,
         height: 630,
-        alt: 'Romee Hotel Galeri',
+        alt: 'Kemer Residence Galeri',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Galeri - Romee Hotel',
+    title: 'Galeri - Kemer Residence',
     description: 'Otelimizin fotoğraf galerisi',
   },
   alternates: {

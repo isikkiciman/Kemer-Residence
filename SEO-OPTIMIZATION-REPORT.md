@@ -1,7 +1,7 @@
 # 🎯 SEO OPTİMİZASYONU TAMAMLANDI
 
 Tarih: 20 Ekim 2025
-Proje: Romee Hotel Website
+Proje: Kemer Residence Website
 Toplam Süre: ~30 dakika
 
 ---
@@ -90,8 +90,8 @@ Toplam Süre: ~30 dakika
 #### ✅ ADIM 10: PWA Manifest Dolduruldu
 - **Dosya:** `/public/site.webmanifest`
 - **Eklenenler:**
-  - name: "Romee Hotel - Lüks Konaklama Deneyimi"
-  - short_name: "Romee Hotel"
+  - name: "Kemer Residence - Lüks Konaklama Deneyimi"
+  - short_name: "Kemer Residence"
   - description
   - theme_color: #1e40af
   - categories: hospitality, travel, lifestyle

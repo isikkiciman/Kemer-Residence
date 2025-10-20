@@ -54,7 +54,7 @@ Aşağıdaki görseller SEO için gereklidir ve `public/` klasörüne eklenmelid
 
 ## Tasarım Önerileri
 
-1. **Marka Tutarlılığı:** Tüm görsellerde Romee Hotel logosu
+1. **Marka Tutarlılığı:** Tüm görsellerde Kemer Residence logosu
 2. **Metin Overlay:** Her görselde sayfa adı ve kısa açıklama
 3. **Renk Paleti:** Marka renklerine sadık kalın
 4. **Mobil Uyumlu:** Küçük ekranlarda da okunabilir olmalı

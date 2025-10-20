@@ -29,7 +29,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black/40 z-10"></div>
       <Image
         src={bannerUrl}
-        alt="Romee Hotel Banner"
+        alt="Kemer Residence Banner"
         fill
         priority
         quality={90}

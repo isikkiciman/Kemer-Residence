@@ -294,7 +294,7 @@ export default function SettingsPage() {
               type="email"
               value={settings.contactEmail}
               onChange={(e) => setSettings({ ...settings, contactEmail: e.target.value })}
-              placeholder="info@romeehotel.com"
+              placeholder="info@kemerresidence.com"
               className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>

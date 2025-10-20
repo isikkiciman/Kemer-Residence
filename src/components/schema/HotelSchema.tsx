@@ -4,13 +4,13 @@ export default function HotelSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Hotel',
-    '@id': 'https://www.romeehotel.com',
-    name: 'Romee Hotel',
+    '@id': 'https://www.kemerresidence.com',
+    name: 'Kemer Residence',
     description: 'Modern ve konforlu odalarımız, harika galerilerimiz ve blog içeriklerimizle size en iyi konaklama deneyimini sunuyoruz.',
-    url: 'https://www.romeehotel.com',
+    url: 'https://www.kemerresidence.com',
     telephone: '+90-212-XXX-XX-XX',
-    email: 'info@romeehotel.com',
-    image: 'https://www.romeehotel.com/og-image.jpg',
+    email: 'info@kemerresidence.com',
+    image: 'https://www.kemerresidence.com/og-image.jpg',
     priceRange: '$$',
     starRating: {
       '@type': 'Rating',
@@ -19,7 +19,7 @@ export default function HotelSchema() {
     },
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Örnek Mahallesi, Romee Sokak No: 123',
+      streetAddress: 'Örnek Mahallesi, Kemer Sokak No: 123',
       addressLocality: 'Beyoğlu',
       addressRegion: 'İstanbul',
       postalCode: '34000',
@@ -45,9 +45,9 @@ export default function HotelSchema() {
       },
     ],
     sameAs: [
-      'https://www.facebook.com/romeehotel',
-      'https://www.instagram.com/romeehotel',
-      'https://www.twitter.com/romeehotel',
+      'https://www.facebook.com/kemerresidence',
+      'https://www.instagram.com/kemerresidence',
+      'https://www.twitter.com/kemerresidence',
     ],
     amenityFeature: [
       {

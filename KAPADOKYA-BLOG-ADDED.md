@@ -106,7 +106,7 @@ https://royalfuntour.com/tr/turlar/kemer-den-kapadokya-turu-balon-turlari-peri-b
 
 ### 📊 Genel Bilgiler
 
-- **Yazar:** Romee Hotel Editörü
+- **Yazar:** Kemer Residence Editörü
 - **Kategori:** Seyahat
 - **Okuma Süresi:** 8 dakika
 - **Durum:** Aktif (Yayında)

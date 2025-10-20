@@ -7,10 +7,10 @@ import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
   title: "Ana Sayfa",
-  description: "Romee Hotel - İstanbul'un kalbinde lüks konaklama deneyimi. Modern odalar, özel hizmetler ve unutulmaz bir tatil için bizi keşfedin.",
-  keywords: ["istanbul otel", "lüks konaklama", "butik otel istanbul", "beyoğlu otel", "şehir merkezi otel", "modern otel"],
+  description: "Kemer Residence - İstanbul'un kalbinde lüks konaklama deneyimi. Modern odalar, özel hizmetler ve unutulmaz bir tatil için bizi keşfedin.",
+  keywords: ["otel", "konaklama", "istanbul", "lüks otel", "butik otel", "otel rezervasyon"],
   openGraph: {
-    title: "Romee Hotel - Lüks Konaklama Deneyimi",
+    title: "Kemer Residence - Lüks Konaklama Deneyimi",
     description: "İstanbul'un kalbinde lüks konaklama deneyimi",
     url: '/',
     images: [
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         url: '/og-home.jpg',
         width: 1200,
         height: 630,
-        alt: 'Romee Hotel Ana Sayfa',
+        alt: 'Kemer Residence Ana Sayfa',
       },
     ],
   },

@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: ["blog", "otel", "seyahat", "konaklama", title],
     authors: [{ name: post.author }],
     openGraph: {
-      title: `${title} - Romee Hotel`,
+      title: `${title} - Kemer Residence`,
       description: excerpt,
       url: `/blog/${slug}`,
       type: 'article',
@@ -123,7 +123,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
         author={post.author}
         publishedAt={post.publishedAt.toISOString()}
         updatedAt={post.updatedAt.toISOString()}
-        url={`https://www.romeehotel.com/${locale}/blog/${slug}`}
+        url={`https://www.kemerresidence.com/${locale}/blog/${slug}`}
       />
       <Header languageSwitcher={<BlogLanguageSwitcher slugs={slugs} />} />
       <div className="min-h-screen">

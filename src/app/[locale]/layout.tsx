@@ -20,16 +20,16 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.romeehotel.com'),
+  metadataBase: new URL('https://www.kemerresidence.com'),
   title: {
-    default: "Romee Hotel - Lüks Konaklama Deneyimi",
-    template: "%s | Romee Hotel",
+    default: "Kemer Residence - Lüks Konaklama Deneyimi",
+    template: "%s | Kemer Residence",
   },
   description: "Modern ve konforlu odalarımız, harika galerilerimiz ve blog içeriklerimizle size en iyi konaklama deneyimini sunuyoruz.",
-  keywords: ["otel", "konaklama", "lüks otel", "romee hotel", "istanbul otel", "butik otel", "şehir oteli"],
-  authors: [{ name: "Romee Hotel" }],
-  creator: "Romee Hotel",
-  publisher: "Romee Hotel",
+  keywords: ["otel", "konaklama", "lüks otel", "kemer residence", "istanbul otel", "butik otel", "şehir oteli"],
+  authors: [{ name: "Kemer Residence" }],
+  creator: "Kemer Residence",
+  publisher: "Kemer Residence",
   robots: {
     index: true,
     follow: true,
@@ -55,25 +55,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'tr_TR',
-    url: 'https://www.romeehotel.com',
-    siteName: 'Romee Hotel',
-    title: 'Romee Hotel - Lüks Konaklama Deneyimi',
+    url: 'https://www.kemerresidence.com',
+    siteName: 'Kemer Residence',
+    title: 'Kemer Residence - Lüks Konaklama Deneyimi',
     description: 'Modern ve konforlu odalarımız, harika galerilerimiz ve blog içeriklerimizle size en iyi konaklama deneyimini sunuyoruz.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Romee Hotel',
+        alt: 'Kemer Residence',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Romee Hotel - Lüks Konaklama Deneyimi',
+    title: 'Kemer Residence - Lüks Konaklama Deneyimi',
     description: 'Modern ve konforlu odalarımız, harika galerilerimiz ve blog içeriklerimizle size en iyi konaklama deneyimini sunuyoruz.',
     images: ['/twitter-image.jpg'],
-    creator: '@romeehotel',
+    creator: '@kemerresidence',
   },
   alternates: {
     canonical: '/',

@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="text-white font-serif text-xl mb-4">Romee Hotel</h3>
+            <h3 className="text-white font-serif text-xl mb-4">Kemer Residence</h3>
             <p className="text-sm mb-4">
               {t('description')}
             </p>
@@ -69,14 +69,14 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={18} />
-                <span>info@romeehotel.com</span>
+                <span>info@kemerresidence.com</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
-          <p>&copy; 2025 Romee Hotel. {t('copyright')}</p>
+          <p>&copy; 2025 Kemer Residence. {t('copyright')}</p>
         </div>
       </div>
     </footer>

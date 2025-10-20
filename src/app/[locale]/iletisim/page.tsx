@@ -5,25 +5,25 @@ import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "İletişim",
-  description: "Romee Hotel ile iletişime geçin. Rezervasyon, sorularınız ve özel istekleriniz için bize ulaşın.",
-  keywords: ["otel iletişim", "rezervasyon", "otel telefon", "otel adres", "otel harita"],
+  description: "Kemer Residence ile iletişime geçin. Rezervasyon, sorularınız ve özel istekleriniz için bize ulaşın.",
+  keywords: ["iletişim", "rezervasyon", "otel iletişim", "telefon", "adres"],
   openGraph: {
-    title: "İletişim - Romee Hotel",
-    description: "Romee Hotel ile iletişime geçin",
+    title: "İletişim - Kemer Residence",
+    description: "Kemer Residence ile iletişime geçin",
     url: '/iletisim',
     images: [
       {
         url: '/og-contact.jpg',
         width: 1200,
         height: 630,
-        alt: 'Romee Hotel İletişim',
+        alt: 'Kemer Residence İletişim',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'İletişim - Romee Hotel',
-    description: 'Romee Hotel ile iletişime geçin',
+    title: 'İletişim - Kemer Residence',
+    description: 'Kemer Residence ile iletişime geçin',
   },
   alternates: {
     canonical: '/tr/iletisim',
@@ -107,8 +107,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold mb-1">E-posta</h3>
                     <p className="text-gray-600">
-                      info@romeehotel.com<br />
-                      reservation@romeehotel.com
+                      info@kemerresidence.com<br />
+                      reservation@kemerresidence.com
                     </p>
                   </div>
                 </div>
@@ -176,7 +176,7 @@ export default function ContactPage() {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Romee Hotel Location"
+          title="Kemer Residence Location"
         ></iframe>
       </section>
     </div>

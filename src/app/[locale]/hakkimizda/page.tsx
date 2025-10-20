@@ -4,25 +4,25 @@ import { Award, Users, Heart, Target } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Hakkımızda",
-  description: "Romee Hotel'in hikayesini keşfedin. Misyonumuz, vizyonumuz ve size sunduğumuz benzersiz konaklama deneyimi hakkında bilgi edinin.",
-  keywords: ["otel hakkında", "romee hotel hikayesi", "otel vizyonu", "misyonumuz", "değerlerimiz"],
+  description: "Kemer Residence'in hikayesini keşfedin. Misyonumuz, vizyonumuz ve size sunduğumuz benzersiz konaklama deneyimi hakkında bilgi edinin.",
+  keywords: ["otel hakkında", "kemer residence hikayesi", "otel vizyonu", "misyonumuz", "değerlerimiz"],
   openGraph: {
-    title: "Hakkımızda - Romee Hotel",
-    description: "Romee Hotel hakkında bilgi edinin",
+    title: "Hakkımızda - Kemer Residence",
+    description: "Kemer Residence hakkında bilgi edinin",
     url: '/hakkimizda',
     images: [
       {
         url: '/og-about.jpg',
         width: 1200,
         height: 630,
-        alt: 'Romee Hotel Hakkımızda',
+        alt: 'Kemer Residence Hakkımızda',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hakkımızda - Romee Hotel',
-    description: 'Romee Hotel hakkında bilgi edinin',
+    title: 'Hakkımızda - Kemer Residence',
+    description: 'Kemer Residence hakkında bilgi edinin',
   },
   alternates: {
     canonical: '/tr/hakkimizda',
@@ -62,10 +62,10 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-4xl font-serif font-bold mb-6">
-                Romee Hotel&apos;e Hoş Geldiniz
+                Kemer Residence&apos;e Hoş Geldiniz
               </h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                2010 yılında kurulan Romee Hotel, İstanbul&apos;un kalbinde konuklara 
+                2010 yılında kurulan Kemer Residence, İstanbul&apos;un kalbinde konuklara 
                 eşsiz bir konaklama deneyimi sunmak için var. Lüks, konfor ve 
                 Türk misafirperverliğini bir araya getiren otelimiz, her misafire 
                 özel hissettirecek hizmetler sunar.
