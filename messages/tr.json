@@ -1,0 +1,159 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "rooms": "Odalar",
+    "blog": "Blog",
+    "gallery": "Galeri",
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "reservation": "Rezervasyon"
+  },
+  "hero": {
+    "title": "Lüks ve Konforun Buluştuğu Yer",
+    "subtitle": "Unutulmaz bir konaklama deneyimi için Romee Hotel'e hoş geldiniz",
+    "exploreRooms": "Odalarımızı Keşfedin",
+    "contactUs": "Bize Ulaşın"
+  },
+  "features": {
+    "title": "Hizmetlerimiz",
+    "subtitle": "Konforlu bir konaklama için ihtiyacınız olan her şey",
+    "wifi": {
+      "title": "Ücretsiz WiFi",
+      "description": "Tüm otel genelinde yüksek hızlı internet"
+    },
+    "restaurant": {
+      "title": "Restoran & Bar",
+      "description": "Lezzetli yemekler ve içecekler"
+    },
+    "parking": {
+      "title": "Vale Otopark",
+      "description": "Ücretsiz araç park hizmeti"
+    },
+    "fitness": {
+      "title": "Fitness Center",
+      "description": "Modern ekipmanlarla donanmış spor salonu"
+    },
+    "spa": {
+      "title": "Spa & Wellness",
+      "description": "Rahatlatıcı masaj ve tedaviler"
+    },
+    "reception": {
+      "title": "24/7 Resepsiyon",
+      "description": "7/24 hizmetinizdeyiz"
+    }
+  },
+  "rooms": {
+    "title": "Odalarımız",
+    "subtitle": "Her biri özenle tasarlanmış konforlu odalarımızı keşfedin",
+    "viewAll": "Tüm Odaları Görüntüle",
+    "perNight": "/gece",
+    "details": "Detaylar",
+    "capacity": "Kişi",
+    "features": "Özellikler:",
+    "bookNow": "Rezervasyon Yap"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Seyahat ipuçları ve otelimizden haberler",
+    "readMore": "Devamını Oku",
+    "viewAll": "Tüm Blog Yazıları",
+    "readTime": "dk",
+    "backToBlog": "Blog'a Dön",
+    "sharePost": "Bu Yazıyı Paylaş",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn"
+  },
+  "cta": {
+    "title": "Unutulmaz Bir Deneyim İçin",
+    "subtitle": "Hemen rezervasyon yapın ve özel fırsatlardan yararlanın",
+    "bookNow": "Rezervasyon Yap",
+    "contactUs": "Bize Ulaşın"
+  },
+  "footer": {
+    "description": "Lüks ve konfor bir arada. Size en iyi konaklama deneyimini sunmak için buradayız.",
+    "quickLinks": "Hızlı Bağlantılar",
+    "services": "Hizmetlerimiz",
+    "contact": "İletişim",
+    "copyright": "Tüm hakları saklıdır.",
+    "servicesList": {
+      "wifi": "Ücretsiz WiFi",
+      "spa": "Spa & Wellness",
+      "restaurant": "Restoran & Bar",
+      "parking": "Otopark",
+      "reception": "24/7 Resepsiyon"
+    }
+  },
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Bizimle iletişime geçin",
+    "getInTouch": "Bize Ulaşın",
+    "description": "Sorularınız, rezervasyonlarınız veya özel istekleriniz için bizimle iletişime geçebilirsiniz. Ekibimiz size yardımcı olmak için hazır.",
+    "address": "Adres",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "hours": "Çalışma Saatleri",
+    "form": {
+      "title": "Mesaj Gönderin",
+      "name": "Ad Soyad",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "subject": "Konu",
+      "message": "Mesaj",
+      "send": "Gönder",
+      "sending": "Gönderiliyor...",
+      "success": "Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız."
+    }
+  },
+  "about": {
+    "title": "Hakkımızda",
+    "subtitle": "Hikayemizi keşfedin",
+    "welcome": "Romee Hotel'e Hoş Geldiniz",
+    "values": "Değerlerimiz",
+    "valuesSubtitle": "Bizi biz yapan prensipler",
+    "team": "Ekibimiz",
+    "teamSubtitle": "Deneyimli ve profesyonel ekibimiz sizlere hizmet etmek için burada"
+  },
+  "gallery": {
+    "title": "Galeri",
+    "subtitle": "Otelimizden görüntüler",
+    "all": "Tümü",
+    "exterior": "Dış Mekan",
+    "interior": "İç Mekan",
+    "rooms": "Odalar",
+    "restaurant": "Restoran",
+    "facilities": "Tesisler"
+  },
+  "reservation": {
+    "title": "Rezervasyon",
+    "subtitle": "Rezervasyon yapın",
+    "checkIn": "Giriş Tarihi",
+    "checkOut": "Çıkış Tarihi",
+    "guests": "Misafir Sayısı",
+    "roomType": "Oda Tipi",
+    "submit": "Rezervasyon Yap",
+    "submitting": "Gönderiliyor...",
+    "success": "Rezervasyonunuz alındı! En kısa sürede size dönüş yapacağız."
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "noData": "Veri bulunamadı",
+    "back": "Geri",
+    "next": "İleri",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "view": "Görüntüle",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "sort": "Sırala",
+    "close": "Kapat",
+    "open": "Aç",
+    "yes": "Evet",
+    "no": "Hayır",
+    "confirm": "Onayla",
+    "submit": "Gönder"
+  }
+}

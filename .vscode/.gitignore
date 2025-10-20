@@ -1,0 +1,15 @@
+# VS Code workspace cache
+.history/
+*.vsix
+.vscode/.ropeproject/
+.vscode/ipch/
+.vscode-test/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~

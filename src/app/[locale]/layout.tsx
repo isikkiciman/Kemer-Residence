@@ -1,0 +1,133 @@
+import type { Metadata, Viewport } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
+import {notFound} from 'next/navigation';
+import {routing} from '@/i18n/routing';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import HotelSchema from "@/components/schema/HotelSchema";
+import "../globals.css";
+
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const playfair = Playfair_Display({ 
+  subsets: ["latin"],
+  variable: "--font-playfair",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.romeehotel.com'),
+  title: {
+    default: "Romee Hotel - Lüks Konaklama Deneyimi",
+    template: "%s | Romee Hotel",
+  },
+  description: "Modern ve konforlu odalarımız, harika galerilerimiz ve blog içeriklerimizle size en iyi konaklama deneyimini sunuyoruz.",
+  keywords: ["otel", "konaklama", "lüks otel", "romee hotel", "istanbul otel", "butik otel", "şehir oteli"],
+  authors: [{ name: "Romee Hotel" }],
+  creator: "Romee Hotel",
+  publisher: "Romee Hotel",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
+  openGraph: {
+    type: 'website',
+    locale: 'tr_TR',
+    url: 'https://www.romeehotel.com',
+    siteName: 'Romee Hotel',
+    title: 'Romee Hotel - Lüks Konaklama Deneyimi',
+    description: 'Modern ve konforlu odalarımız, harika galerilerimiz ve blog içeriklerimizle size en iyi konaklama deneyimini sunuyoruz.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Romee Hotel',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Romee Hotel - Lüks Konaklama Deneyimi',
+    description: 'Modern ve konforlu odalarımız, harika galerilerimiz ve blog içeriklerimizle size en iyi konaklama deneyimini sunuyoruz.',
+    images: ['/twitter-image.jpg'],
+    creator: '@romeehotel',
+  },
+  alternates: {
+    canonical: '/',
+    languages: {
+      'tr': '/tr',
+      'en': '/en',
+      'de': '/de',
+      'ru': '/ru',
+      'pl': '/pl',
+    },
+  },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({locale}));
+}
+
+export default async function LocaleLayout({
+  children,
+  params
+}: {
+  children: React.ReactNode;
+  params: Promise<{locale: string}>;
+}) {
+  const {locale} = await params;
+  
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as 'tr' | 'en' | 'de' | 'ru' | 'pl')) {
+    notFound();
+  }
+
+  // Providing all messages to the client side
+  const messages = await getMessages();
+
+  return (
+    <html lang={locale}>
+      <head>
+        <HotelSchema />
+      </head>
+      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+        <NextIntlClientProvider messages={messages}>
+          <Header />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
+}

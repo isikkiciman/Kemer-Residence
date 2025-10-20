@@ -1,0 +1,745 @@
+"use client";
+
+import { useEffect, useState, FormEvent, ChangeEvent } from "react";
+import { Save, Upload } from "lucide-react";
+import toast from "react-hot-toast";
+
+const languages = [
+  { code: "tr", name: "Türkçe" },
+  { code: "en", name: "English" },
+  { code: "de", name: "Deutsch" },
+  { code: "ru", name: "Русский" },
+  { code: "pl", name: "Polski" },
+];
+
+export default function SettingsPage() {
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadingBanner, setUploadingBanner] = useState(false);
+  const [settings, setSettings] = useState({
+    siteName: { tr: "", en: "", de: "", ru: "", pl: "" },
+    siteDescription: { tr: "", en: "", de: "", ru: "", pl: "" },
+    logoUrl: "",
+    bannerUrl: "",
+    contactEmail: "",
+    contactPhone: "",
+    contactAddress: { tr: "", en: "", de: "", ru: "", pl: "" },
+    socialFacebook: "",
+    socialInstagram: "",
+    socialTwitter: "",
+  });
+
+  useEffect(() => {
+    fetchSettings();
+  }, []);
+
+  const fetchSettings = async () => {
+    try {
+      const response = await fetch("/api/admin/settings");
+      const data = await response.json();
+      
+      // Merge with default values
+      setSettings({
+        siteName: data.siteName || { tr: "", en: "", de: "", ru: "", pl: "" },
+        siteDescription: data.siteDescription || { tr: "", en: "", de: "", ru: "", pl: "" },
+        logoUrl: data.logoUrl || "/logo.svg",
+        bannerUrl: data.bannerUrl || "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070",
+        contactEmail: data.contactEmail || "",
+        contactPhone: data.contactPhone || "",
+        contactAddress: data.contactAddress || { tr: "", en: "", de: "", ru: "", pl: "" },
+        socialFacebook: data.socialFacebook || "",
+        socialInstagram: data.socialInstagram || "",
+        socialTwitter: data.socialTwitter || "",
+      });
+    } catch (error) {
+      console.error("Error fetching settings:", error);
+      toast.error("Ayarlar yüklenemedi");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleFileUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    const allowedTypes = ['image/svg+xml', 'image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error('Sadece SVG, PNG, JPG ve WebP dosyaları yüklenebilir!');
+      return;
+    }
+
+    // Validate file size (5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('Dosya boyutu 5MB\'dan küçük olmalıdır!');
+      return;
+    }
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Upload failed');
+      }
+
+      const data = await response.json();
+      setSettings({ ...settings, logoUrl: data.url });
+      toast.success('Logo başarıyla yüklendi!');
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      toast.error('Dosya yüklenemedi!');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleBannerUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error('Sadece PNG, JPG ve WebP dosyaları yüklenebilir!');
+      return;
+    }
+
+    // Validate file size (10MB for banners)
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error('Dosya boyutu 10MB\'dan küçük olmalıdır!');
+      return;
+    }
+
+    setUploadingBanner(true);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Upload failed');
+      }
+
+      const data = await response.json();
+      setSettings({ ...settings, bannerUrl: data.url });
+      toast.success('Banner başarıyla yüklendi!');
+    } catch (error) {
+      console.error('Error uploading banner:', error);
+      toast.error('Banner yüklenemedi!');
+    } finally {
+      setUploadingBanner(false);
+    }
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+
+    try {
+      const response = await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(settings),
+      });
+
+      if (response.ok) {
+        toast.success("Ayarlar başarıyla kaydedildi!");
+      } else {
+        toast.error("Ayarlar kaydedilemedi!");
+      }
+    } catch (error) {
+      console.error("Error saving settings:", error);
+      toast.error("Bir hata oluştu!");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-sm text-gray-500">Yükleniyor...</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="max-w-4xl space-y-8">
+      {/* Header */}
+      <div>
+        <h1 className="text-2xl font-semibold text-gray-900">Site Ayarları</h1>
+        <p className="text-sm text-gray-500 mt-1">Logo, banner ve genel ayarlar</p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-8">
+        {/* Logo & Banner - Side by Side */}
+        <div className="grid grid-cols-2 gap-6">
+          {/* Logo */}
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-3">Logo</label>
+              <div className="space-y-3">
+                <label className="cursor-pointer block">
+                  <div className="flex items-center justify-center h-32 border-2 border-dashed border-gray-300 rounded-xl hover:border-blue-400 hover:bg-blue-50/50 transition-all">
+                    {settings.logoUrl ? (
+                      <img src={settings.logoUrl} alt="Logo" className="h-20 w-auto object-contain" />
+                    ) : (
+                      <div className="text-center">
+                        <Upload className="mx-auto text-gray-400 mb-2" size={24} />
+                        <p className="text-sm text-gray-500">Logo yükle</p>
+                      </div>
+                    )}
+                  </div>
+                  <input
+                    type="file"
+                    accept=".svg,.png,.jpg,.jpeg,.webp"
+                    onChange={handleFileUpload}
+                    disabled={uploading}
+                    className="hidden"
+                  />
+                </label>
+                <input
+                  type="text"
+                  value={settings.logoUrl}
+                  onChange={(e) => setSettings({ ...settings, logoUrl: e.target.value })}
+                  placeholder="veya URL girin"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Banner */}
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-3">Banner</label>
+              <div className="space-y-3">
+                <label className="cursor-pointer block">
+                  <div className="flex items-center justify-center h-32 border-2 border-dashed border-gray-300 rounded-xl hover:border-purple-400 hover:bg-purple-50/50 transition-all overflow-hidden">
+                    {settings.bannerUrl ? (
+                      <img src={settings.bannerUrl} alt="Banner" className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="text-center">
+                        <Upload className="mx-auto text-gray-400 mb-2" size={24} />
+                        <p className="text-sm text-gray-500">Banner yükle</p>
+                      </div>
+                    )}
+                  </div>
+                  <input
+                    type="file"
+                    accept=".png,.jpg,.jpeg,.webp"
+                    onChange={handleBannerUpload}
+                    disabled={uploadingBanner}
+                    className="hidden"
+                  />
+                </label>
+                <input
+                  type="text"
+                  value={settings.bannerUrl}
+                  onChange={(e) => setSettings({ ...settings, bannerUrl: e.target.value })}
+                  placeholder="veya URL girin"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Site Name */}
+        <div className="space-y-3">
+          <label className="block text-sm font-medium text-gray-900">Site İsmi</label>
+          <div className="grid grid-cols-5 gap-3">
+            {languages.map((lang) => (
+              <input
+                key={lang.code}
+                type="text"
+                value={settings.siteName[lang.code as keyof typeof settings.siteName]}
+                onChange={(e) =>
+                  setSettings({
+                    ...settings,
+                    siteName: { ...settings.siteName, [lang.code]: e.target.value },
+                  })
+                }
+                placeholder={lang.name}
+                className="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Site Description */}
+        <div className="space-y-3">
+          <label className="block text-sm font-medium text-gray-900">Site Açıklaması</label>
+          <div className="space-y-2">
+            {languages.map((lang) => (
+              <textarea
+                key={lang.code}
+                rows={2}
+                value={settings.siteDescription[lang.code as keyof typeof settings.siteDescription]}
+                onChange={(e) =>
+                  setSettings({
+                    ...settings,
+                    siteDescription: {
+                      ...settings.siteDescription,
+                      [lang.code]: e.target.value,
+                    },
+                  })
+                }
+                placeholder={lang.name}
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Contact */}
+        <div className="grid grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <label className="block text-sm font-medium text-gray-900">E-posta</label>
+            <input
+              type="email"
+              value={settings.contactEmail}
+              onChange={(e) => setSettings({ ...settings, contactEmail: e.target.value })}
+              placeholder="info@romeehotel.com"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <div className="space-y-3">
+            <label className="block text-sm font-medium text-gray-900">Telefon</label>
+            <input
+              type="tel"
+              value={settings.contactPhone}
+              onChange={(e) => setSettings({ ...settings, contactPhone: e.target.value })}
+              placeholder="+90 212 XXX XX XX"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+        </div>
+
+        {/* Social Media */}
+        <div className="grid grid-cols-3 gap-4">
+          <div className="space-y-3">
+            <label className="block text-sm font-medium text-gray-900">Facebook</label>
+            <input
+              type="url"
+              value={settings.socialFacebook}
+              onChange={(e) => setSettings({ ...settings, socialFacebook: e.target.value })}
+              placeholder="facebook.com/..."
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <div className="space-y-3">
+            <label className="block text-sm font-medium text-gray-900">Instagram</label>
+            <input
+              type="url"
+              value={settings.socialInstagram}
+              onChange={(e) => setSettings({ ...settings, socialInstagram: e.target.value })}
+              placeholder="instagram.com/..."
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <div className="space-y-3">
+            <label className="block text-sm font-medium text-gray-900">Twitter</label>
+            <input
+              type="url"
+              value={settings.socialTwitter}
+              onChange={(e) => setSettings({ ...settings, socialTwitter: e.target.value })}
+              placeholder="twitter.com/..."
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+        </div>
+
+        {/* Save Button */}
+        <div className="pt-4 border-t border-gray-200">
+          <button
+            type="submit"
+            disabled={saving}
+            className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors"
+          >
+            <Save size={16} />
+            {saving ? "Kaydediliyor..." : "Kaydet"}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+                    onChange={(e) =>
+                      setSettings({
+                        ...settings,
+                        siteName: { ...settings.siteName, [lang.code]: e.target.value },
+                      })
+                    }
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    placeholder="Romee Hotel"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Logo URL */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="bg-gradient-to-r from-blue-50 to-white px-6 py-4 border-b border-gray-200">
+            <h2 className="text-lg font-bold text-gray-900">Logo</h2>
+            <p className="text-sm text-gray-500 mt-1">Site logonuzu yükleyin veya URL girin</p>
+          </div>
+          <div className="p-6 space-y-5">
+            {/* File Upload */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-3">
+                📁 Dosya Yükle
+              </label>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <label className="cursor-pointer inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg">
+                  <Upload className="h-5 w-5" />
+                  <span className="font-medium">{uploading ? 'Yükleniyor...' : 'Logo Seç'}</span>
+                  <input
+                    type="file"
+                    accept=".svg,.png,.jpg,.jpeg,.webp"
+                    onChange={handleFileUpload}
+                    disabled={uploading}
+                    className="hidden"
+                  />
+                </label>
+                <span className="text-xs text-gray-500 bg-gray-50 px-3 py-2 rounded-lg">
+                  SVG, PNG, JPG, WebP • Max 5MB
+                </span>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-200"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-3 bg-white text-gray-400 font-medium">veya URL girin</span>
+              </div>
+            </div>
+
+            {/* URL Input */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                🔗 Logo URL
+              </label>
+              <input
+                type="text"
+                value={settings.logoUrl}
+                onChange={(e) =>
+                  setSettings({ ...settings, logoUrl: e.target.value })
+                }
+                placeholder="/logo.svg veya https://example.com/logo.png"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              />
+              <p className="mt-2 text-xs text-gray-500">
+                Logo dosyasının URL adresini manuel olarak girin
+              </p>
+            </div>
+            {settings.logoUrl && (
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 border border-gray-200">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  👁️ Önizleme
+                </label>
+                <div className="bg-white rounded-lg p-6 flex items-center justify-center min-h-[100px] shadow-sm">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img 
+                    src={settings.logoUrl} 
+                    alt="Logo Preview" 
+                    className="h-12 w-auto max-w-full object-contain"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/logo.svg';
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Banner Image */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="bg-gradient-to-r from-purple-50 to-white px-6 py-4 border-b border-gray-200">
+            <h2 className="text-lg font-bold text-gray-900">Ana Sayfa Banner</h2>
+            <p className="text-sm text-gray-500 mt-1">Hero bölümünde görünecek arka plan resmi (Önerilen: 1920x800px)</p>
+          </div>
+          <div className="p-6 space-y-5">
+            {/* File Upload */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-3">
+                📁 Banner Yükle
+              </label>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <label className="cursor-pointer inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl hover:from-purple-700 hover:to-purple-800 transition-all shadow-md hover:shadow-lg">
+                  <Upload className="h-5 w-5" />
+                  <span className="font-medium">{uploadingBanner ? 'Yükleniyor...' : 'Banner Seç'}</span>
+                  <input
+                    type="file"
+                    accept=".png,.jpg,.jpeg,.webp"
+                    onChange={handleBannerUpload}
+                    disabled={uploadingBanner}
+                    className="hidden"
+                  />
+                </label>
+                <span className="text-xs text-gray-500 bg-gray-50 px-3 py-2 rounded-lg">
+                  PNG, JPG, WebP • Max 10MB • 1920x800px önerilir
+                </span>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-200"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-3 bg-white text-gray-400 font-medium">veya URL girin</span>
+              </div>
+            </div>
+
+            {/* URL Input */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                🔗 Banner URL
+              </label>
+              <input
+                type="text"
+                value={settings.bannerUrl}
+                onChange={(e) =>
+                  setSettings({ ...settings, bannerUrl: e.target.value })
+                }
+                placeholder="https://images.unsplash.com/photo-..."
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              />
+              <p className="mt-2 text-xs text-gray-500">
+                Banner URL&apos;sini girin (Unsplash, Pixabay gibi kaynaklardan)
+              </p>
+            </div>
+            {settings.bannerUrl && (
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 border border-gray-200">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  👁️ Önizleme
+                </label>
+                <div className="bg-white rounded-lg p-4 shadow-sm overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img 
+                    src={settings.bannerUrl} 
+                    alt="Banner Preview" 
+                    className="w-full h-64 object-cover rounded-lg"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070';
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Site Description */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="bg-gradient-to-r from-green-50 to-white px-6 py-4 border-b border-gray-200">
+            <h2 className="text-lg font-bold text-gray-900">Site Açıklaması</h2>
+            <p className="text-sm text-gray-500 mt-1">Her dil için site açıklaması (Meta description)</p>
+          </div>
+          <div className="p-6">
+            <div className="grid grid-cols-1 gap-5">
+              {languages.map((lang) => (
+                <div key={lang.code}>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    {lang.name}
+                  </label>
+                  <textarea
+                    rows={2}
+                    value={
+                      settings.siteDescription[
+                        lang.code as keyof typeof settings.siteDescription
+                      ]
+                    }
+                    onChange={(e) =>
+                      setSettings({
+                        ...settings,
+                        siteDescription: {
+                          ...settings.siteDescription,
+                          [lang.code]: e.target.value,
+                        },
+                      })
+                    }
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all resize-none"
+                    placeholder="Lüks ve konforlu konaklama deneyimi"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Info */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="bg-gradient-to-r from-yellow-50 to-white px-6 py-4 border-b border-gray-200">
+            <h2 className="text-lg font-bold text-gray-900">İletişim Bilgileri</h2>
+            <p className="text-sm text-gray-500 mt-1">E-posta, telefon ve adres bilgileri</p>
+          </div>
+          <div className="p-6 space-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  📧 E-posta
+                </label>
+              <input
+                type="email"
+                value={settings.contactEmail}
+                onChange={(e) =>
+                  setSettings({ ...settings, contactEmail: e.target.value })
+                }
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all"
+                placeholder="info@romeehotel.com"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                📞 Telefon
+              </label>
+              <input
+                type="tel"
+                value={settings.contactPhone}
+                onChange={(e) =>
+                  setSettings({ ...settings, contactPhone: e.target.value })
+                }
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all"
+                placeholder="+90 212 XXX XX XX"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-4 pt-2">
+            <h3 className="text-sm font-bold text-gray-900">📍 Adres (Çok Dilli)</h3>
+            {languages.map((lang) => (
+              <div key={lang.code}>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  {lang.name}
+                </label>
+                <textarea
+                  rows={2}
+                  value={
+                    settings.contactAddress[
+                      lang.code as keyof typeof settings.contactAddress
+                    ]
+                  }
+                  onChange={(e) =>
+                    setSettings({
+                      ...settings,
+                      contactAddress: {
+                        ...settings.contactAddress,
+                        [lang.code]: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all resize-none"
+                  placeholder="Örnek Mahallesi, No: 123, İstanbul"
+                />
+              </div>
+            ))}
+          </div>
+          </div>
+        </div>
+
+        {/* Social Media */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="bg-gradient-to-r from-pink-50 to-white px-6 py-4 border-b border-gray-200">
+            <h2 className="text-lg font-bold text-gray-900">Sosyal Medya</h2>
+            <p className="text-sm text-gray-500 mt-1">Facebook, Instagram ve Twitter bağlantıları</p>
+          </div>
+          <div className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  📘 Facebook
+                </label>
+                <input
+                  type="url"
+                  value={settings.socialFacebook}
+                  onChange={(e) =>
+                  setSettings({ ...settings, socialFacebook: e.target.value })
+                }
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                placeholder="https://facebook.com/romeehotel"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                📸 Instagram
+              </label>
+              <input
+                type="url"
+                value={settings.socialInstagram}
+                onChange={(e) =>
+                  setSettings({ ...settings, socialInstagram: e.target.value })
+                }
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                placeholder="https://instagram.com/romeehotel"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                🐦 Twitter
+              </label>
+              <input
+                type="url"
+                value={settings.socialTwitter}
+                onChange={(e) =>
+                  setSettings({ ...settings, socialTwitter: e.target.value })
+                }
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                placeholder="https://twitter.com/romeehotel"
+              />
+            </div>
+          </div>
+          </div>
+        </div>
+
+        {/* Submit Button */}
+        <div className="sticky bottom-6 z-10">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-semibold text-gray-900">Ayarları Kaydet</p>
+                <p className="text-sm text-gray-500 mt-1">Değişiklikleriniz tüm sitede uygulanacak</p>
+              </div>
+              <button
+                type="submit"
+                disabled={saving}
+                className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3.5 rounded-xl hover:from-green-700 hover:to-green-800 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 font-semibold shadow-lg hover:shadow-xl transition-all"
+              >
+                <Save size={20} />
+                {saving ? "Kaydediliyor..." : "Kaydet"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+}

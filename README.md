@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Romee Hotel - Modern Otel Web Sitesi
 
-## Getting Started
+Modern, responsive ve SEO uyumlu bir otel web sitesi. Next.js 14+, TypeScript ve Tailwind CSS ile geliştirilmiştir.
 
-First, run the development server:
+## 🚀 Özellikler
 
+- ⚡ **Next.js 14+** - App Router ve Server Components
+- 🎨 **Tailwind CSS** - Modern ve responsive tasarım
+- 📱 **Tam Responsive** - Mobil, tablet ve desktop uyumlu
+- 🔍 **SEO Uyumlu** - Metadata ve optimizasyon
+- ⚡ **Turbopack** - Hızlı geliştirme deneyimi
+- 🎯 **TypeScript** - Tip güvenliği
+- 🎨 **Lucide Icons** - Modern ikonlar
+
+## 📄 Sayfalar
+
+1. **Ana Sayfa** - Hero, özellikler, öne çıkan odalar, blog ve CTA
+2. **Odalar** - Tüm oda türleri ve detayları
+3. **Blog** - Seyahat ipuçları ve otel haberleri
+4. **Galeri** - Otel fotoğrafları
+5. **Hakkımızda** - Otel hikayesi, değerler ve ekip
+6. **İletişim** - İletişim bilgileri ve form
+
+## 🛠️ Kurulum
+
+### Gereksinimler
+
+- Node.js 18.x veya üzeri
+- npm
+
+### Adımlar
+
+1. Geliştirme sunucusunu başlatın:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Tarayıcınızda açın:
+```
+http://localhost:3000
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Komutlar
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Geliştirme sunucusu (Turbopack ile)
+npm run dev
 
-## Learn More
+# Production build
+npm run build
 
-To learn more about Next.js, take a look at the following resources:
+# Production sunucusu
+npm start
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Lint kontrolü
+npm run lint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Tasarım
 
-## Deploy on Vercel
+- **Renk Paleti:**
+  - Primary: #8b7355 (Bronz/Kahve)
+  - Primary Dark: #6d5a44
+  - Secondary: #f5f5f0 (Açık Bej)
+  - Accent: #d4af37 (Altın)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Fontlar:**
+  - Başlıklar: Playfair Display (Serif)
+  - Metin: Inter (Sans-serif)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Proje Yapısı
+
+```
+romee-hotel/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx          # Ana layout
+│   │   ├── page.tsx            # Ana sayfa
+│   │   ├── globals.css         # Global stiller
+│   │   ├── odalar/            # Odalar sayfası
+│   │   ├── blog/              # Blog sayfası
+│   │   ├── galeri/            # Galeri sayfası
+│   │   ├── hakkimizda/        # Hakkımızda sayfası
+│   │   └── iletisim/          # İletişim sayfası
+│   └── components/
+│       ├── Header.tsx          # Navbar
+│       ├── Footer.tsx          # Footer
+│       ├── Hero.tsx            # Hero bölümü
+│       ├── Features.tsx        # Özellikler
+│       ├── FeaturedRooms.tsx   # Öne çıkan odalar
+│       ├── LatestBlog.tsx      # Son blog yazıları
+│       └── CTASection.tsx      # Call-to-action
+├── public/                     # Statik dosyalar
+└── package.json
+```
+
+## 🔧 Özelleştirme
+
+### Renkleri Değiştirme
+
+`src/app/globals.css` dosyasındaki CSS değişkenlerini düzenleyin:
+
+```css
+:root {
+  --primary: #8b7355;
+  --primary-dark: #6d5a44;
+  --secondary: #f5f5f0;
+  --accent: #d4af37;
+}
+```
+
+### İçerik Güncelleme
+
+- Oda bilgileri: `src/app/odalar/page.tsx`
+- Blog yazıları: `src/app/blog/page.tsx`
+- Galeri resimleri: `src/app/galeri/page.tsx`
+- İletişim bilgileri: `src/app/iletisim/page.tsx`
+
+## 📸 Görseller
+
+Görseller Unsplash'ten alınmıştır. Kendi görsellerinizi kullanmak için `public/images/` klasörüne ekleyin ve bileşenlerdeki URL'leri güncelleyin.
+
+## 🚀 Production
+
+Production için build almak:
+
+```bash
+npm run build
+npm start
+```
+
+Vercel, Netlify veya benzeri platformlara deploy edebilirsiniz.
+
+---
+
+⭐ Bu proje Next.js 14+ ile oluşturulmuştur.

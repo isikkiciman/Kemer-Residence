@@ -1,0 +1,24 @@
+# Romee Hotel - Robots.txt
+# https://www.romeehotel.com/robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Sitemaps
+Sitemap: https://www.romeehotel.com/sitemap.xml
+Sitemap: https://www.romeehotel.com/sitemap-0.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Specific bot rules
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Yandexbot
+Allow: /

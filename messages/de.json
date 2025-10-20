@@ -1,0 +1,159 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "rooms": "Zimmer",
+    "blog": "Blog",
+    "gallery": "Galerie",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "reservation": "Reservierung"
+  },
+  "hero": {
+    "title": "Wo Luxus auf Komfort trifft",
+    "subtitle": "Willkommen im Romee Hotel für ein unvergessliches Aufenthaltserlebnis",
+    "exploreRooms": "Unsere Zimmer erkunden",
+    "contactUs": "Kontaktieren Sie uns"
+  },
+  "features": {
+    "title": "Unsere Dienstleistungen",
+    "subtitle": "Alles, was Sie für einen komfortablen Aufenthalt benötigen",
+    "wifi": {
+      "title": "Kostenloses WLAN",
+      "description": "Hochgeschwindigkeitsinternet im gesamten Hotel"
+    },
+    "restaurant": {
+      "title": "Restaurant & Bar",
+      "description": "Köstliche Speisen und Getränke"
+    },
+    "parking": {
+      "title": "Parkservice",
+      "description": "Kostenloser Fahrzeugparkservice"
+    },
+    "fitness": {
+      "title": "Fitnesscenter",
+      "description": "Fitnessstudio mit modernen Geräten"
+    },
+    "spa": {
+      "title": "Spa & Wellness",
+      "description": "Entspannende Massagen und Behandlungen"
+    },
+    "reception": {
+      "title": "24/7 Rezeption",
+      "description": "Wir sind rund um die Uhr für Sie da"
+    }
+  },
+  "rooms": {
+    "title": "Unsere Zimmer",
+    "subtitle": "Entdecken Sie unsere komfortablen Zimmer, jedes sorgfältig gestaltet",
+    "viewAll": "Alle Zimmer anzeigen",
+    "perNight": "/Nacht",
+    "details": "Details",
+    "capacity": "Personen",
+    "features": "Eigenschaften:",
+    "bookNow": "Jetzt buchen"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Reisetipps und Neuigkeiten aus unserem Hotel",
+    "readMore": "Mehr lesen",
+    "viewAll": "Alle Blogbeiträge",
+    "readTime": "Min",
+    "backToBlog": "Zurück zum Blog",
+    "sharePost": "Diesen Beitrag teilen",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn"
+  },
+  "cta": {
+    "title": "Für ein unvergessliches Erlebnis",
+    "subtitle": "Buchen Sie jetzt und profitieren Sie von Sonderangeboten",
+    "bookNow": "Jetzt buchen",
+    "contactUs": "Kontaktieren Sie uns"
+  },
+  "footer": {
+    "description": "Luxus und Komfort vereint. Wir sind hier, um Ihnen das beste Unterkunftserlebnis zu bieten.",
+    "quickLinks": "Schnelllinks",
+    "services": "Unsere Dienstleistungen",
+    "contact": "Kontakt",
+    "copyright": "Alle Rechte vorbehalten.",
+    "servicesList": {
+      "wifi": "Kostenloses WLAN",
+      "spa": "Spa & Wellness",
+      "restaurant": "Restaurant & Bar",
+      "parking": "Parkplatz",
+      "reception": "24/7 Rezeption"
+    }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Nehmen Sie Kontakt mit uns auf",
+    "getInTouch": "Kontaktieren Sie uns",
+    "description": "Sie können uns für Ihre Fragen, Reservierungen oder Sonderwünsche kontaktieren. Unser Team ist bereit, Ihnen zu helfen.",
+    "address": "Adresse",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "hours": "Öffnungszeiten",
+    "form": {
+      "title": "Nachricht senden",
+      "name": "Vollständiger Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "subject": "Betreff",
+      "message": "Nachricht",
+      "send": "Senden",
+      "sending": "Wird gesendet...",
+      "success": "Ihre Nachricht wurde erfolgreich gesendet! Wir werden uns so schnell wie möglich bei Ihnen melden."
+    }
+  },
+  "about": {
+    "title": "Über uns",
+    "subtitle": "Entdecken Sie unsere Geschichte",
+    "welcome": "Willkommen im Romee Hotel",
+    "values": "Unsere Werte",
+    "valuesSubtitle": "Die Prinzipien, die uns ausmachen",
+    "team": "Unser Team",
+    "teamSubtitle": "Unser erfahrenes und professionelles Team steht Ihnen zur Verfügung"
+  },
+  "gallery": {
+    "title": "Galerie",
+    "subtitle": "Bilder von unserem Hotel",
+    "all": "Alle",
+    "exterior": "Außenbereich",
+    "interior": "Innenbereich",
+    "rooms": "Zimmer",
+    "restaurant": "Restaurant",
+    "facilities": "Einrichtungen"
+  },
+  "reservation": {
+    "title": "Reservierung",
+    "subtitle": "Reservierung vornehmen",
+    "checkIn": "Anreisedatum",
+    "checkOut": "Abreisedatum",
+    "guests": "Anzahl der Gäste",
+    "roomType": "Zimmertyp",
+    "submit": "Reservieren",
+    "submitting": "Wird gesendet...",
+    "success": "Ihre Reservierung wurde erhalten! Wir werden uns so schnell wie möglich bei Ihnen melden."
+  },
+  "common": {
+    "loading": "Lädt...",
+    "error": "Ein Fehler ist aufgetreten",
+    "noData": "Keine Daten gefunden",
+    "back": "Zurück",
+    "next": "Weiter",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "view": "Ansehen",
+    "search": "Suchen",
+    "filter": "Filtern",
+    "sort": "Sortieren",
+    "close": "Schließen",
+    "open": "Öffnen",
+    "yes": "Ja",
+    "no": "Nein",
+    "confirm": "Bestätigen",
+    "submit": "Absenden"
+  }
+}
