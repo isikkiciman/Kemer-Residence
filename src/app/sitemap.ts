@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/prisma-runtime';
 
 const baseUrl = 'https://www.kemerresidence.com';
 const locales = ['tr', 'en', 'de', 'ru', 'pl'];

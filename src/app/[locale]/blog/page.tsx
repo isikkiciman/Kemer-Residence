@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { Calendar, User, Clock, ArrowRight } from "lucide-react";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma-runtime";
 import {getTranslations} from 'next-intl/server';
 
 interface MultiLangText {
