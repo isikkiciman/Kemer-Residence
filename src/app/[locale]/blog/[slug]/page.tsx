@@ -1,72 +1,147 @@
-export default function BlogDetailPage() {import { notFound } from "next/navigation";import { notFound } from "next/navigation";import type { Metadata } from "next";import type { Metadata } from "next";import type { Metadata } from "next";
+export default function BlogDetailPage() {import { notFound } from "next/navigation";export default function BlogDetailPage() {import { notFound } from "next/navigation";import { notFound } from "next/navigation";import type { Metadata } from "next";import type { Metadata } from "next";import type { Metadata } from "next";
 
   return (
 
-    <div className="min-h-screen">import blogData from '@/data/blog-posts.json';
+    <div>import blogData from '@/data/blog-posts.json';
 
-      <div className="container mx-auto px-4 py-8">
+      <h1>Blog Detay</h1>
 
-        <h1 className="text-4xl font-bold mb-6">Blog Detay</h1>import blogData from '@/data/blog-posts.json';
-
-        <p>Blog detay sayfası yakında güncellenecek...</p>
-
-      </div>interface PageProps {
+      <p>Yakında güncellenecek...</p>  return (
 
     </div>
 
-  );  params: Promise<{import Image from "next/image";
+  );interface PageProps {
 
 }
+  params: Promise<{    <div className="min-h-screen">import blogData from '@/data/blog-posts.json';
+
     locale: string;
 
-    slug: string;interface PageProps {
+    slug: string;      <div className="container mx-auto px-4 py-8">
 
   }>;
 
-}  params: Promise<{import { Link } from "@/i18n/routing";import Image from "next/image";import Image from "next/image";
+}        <h1 className="text-4xl font-bold mb-6">Blog Detay</h1>import blogData from '@/data/blog-posts.json';
 
 
 
-export default async function BlogDetailPage({ params }: PageProps) {    locale: string;
+export default async function BlogDetailPage({ params }: PageProps) {        <p>Blog detay sayfası yakında güncellenecek...</p>
 
   const { locale, slug } = await params;
 
-      slug: string;import { Calendar, User, Clock, ArrowLeft } from "lucide-react";
+        </div>interface PageProps {
 
   // JSON dosyasından blog postunu bul
 
-  const post = blogData.posts.find(p => {  }>;
+  const post = blogData.posts.find(p => {    </div>
 
-    const postSlug = p.slug as any;
+    const postSlug = p.slug as Record<string, string>;
 
-    return postSlug[locale] === slug;}import { notFound } from "next/navigation";import { Link } from "@/i18n/routing";import { Link } from "@/i18n/routing";
+    return postSlug[locale] === slug;  );  params: Promise<{import Image from "next/image";
 
   });
 
-  
-
-  if (!post) {
-
-    notFound();export default async function BlogDetailPage({ params }: PageProps) {import Header from "@/components/Header";
-
   }
 
-  const { locale, slug } = await params;
+  if (!post) {    locale: string;
 
-  const title = (post.title as any)[locale] || (post.title as any).tr;
+    notFound();
 
-  const content = (post.content as any)[locale] || (post.content as any).tr;  import BlogLanguageSwitcher from "@/components/BlogLanguageSwitcher";import { Calendar, User, Clock, ArrowLeft } from "lucide-react";import { Calendar, User, Clock, ArrowLeft } from "lucide-react";
+  }    slug: string;interface PageProps {
 
 
 
-  return (  // JSON dosyasından blog postunu bul
+  const title = (post.title as Record<string, string>)[locale] || (post.title as Record<string, string>).tr;  }>;
+
+  const excerpt = (post.excerpt as Record<string, string>)[locale] || (post.excerpt as Record<string, string>).tr;
+
+  const content = (post.content as Record<string, string>)[locale] || (post.content as Record<string, string>).tr;}  params: Promise<{import { Link } from "@/i18n/routing";import Image from "next/image";import Image from "next/image";
+
+
+
+  return (
 
     <div className="min-h-screen">
 
-      <div className="container mx-auto px-4 py-8">  const post = blogData.posts.find(p => p.slug[locale as keyof typeof p.slug] === slug);import BlogPostSchema from "@/components/schema/BlogPostSchema";
+      <div className="container mx-auto px-4 py-8">export default async function BlogDetailPage({ params }: PageProps) {    locale: string;
 
-        <h1 className="text-4xl font-bold mb-6">{title}</h1>
+        <a href="/blog" className="text-blue-600 hover:underline mb-4 inline-block">
 
+          ← Blog'a Dön  const { locale, slug } = await params;
+
+        </a>
+
+              slug: string;import { Calendar, User, Clock, ArrowLeft } from "lucide-react";
+
+        <article>
+
+          <h1 className="text-4xl font-bold mb-4">{title}</h1>  // JSON dosyasından blog postunu bul
+
+          
+
+          <div className="text-gray-600 mb-6">  const post = blogData.posts.find(p => {  }>;
+
+            <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+
+              {post.category}    const postSlug = p.slug as any;
+
+            </span>
+
+            <span className="ml-4">{post.readTime}</span>    return postSlug[locale] === slug;}import { notFound } from "next/navigation";import { Link } from "@/i18n/routing";import { Link } from "@/i18n/routing";
+
+            <span className="ml-4">{new Date(post.publishedAt).toLocaleDateString('tr-TR')}</span>
+
+          </div>  });
+
+          
+
+          {post.image && (  
+
+            <img 
+
+              src={post.image}   if (!post) {
+
+              alt={title}
+
+              className="w-full h-64 object-cover rounded-lg mb-6"    notFound();export default async function BlogDetailPage({ params }: PageProps) {import Header from "@/components/Header";
+
+            />
+
+          )}  }
+
+          
+
+          <div className="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6">  const { locale, slug } = await params;
+
+            <p className="text-lg italic text-gray-700">{excerpt}</p>
+
+          </div>  const title = (post.title as any)[locale] || (post.title as any).tr;
+
+          
+
+          <div className="prose max-w-none">  const content = (post.content as any)[locale] || (post.content as any).tr;  import BlogLanguageSwitcher from "@/components/BlogLanguageSwitcher";import { Calendar, User, Clock, ArrowLeft } from "lucide-react";import { Calendar, User, Clock, ArrowLeft } from "lucide-react";
+
+            {content.split('\n').map((paragraph, index) => (
+
+              <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+
+                {paragraph}
+
+              </p>  return (  // JSON dosyasından blog postunu bul
+
+            ))}
+
+          </div>    <div className="min-h-screen">
+
+        </article>
+
+      </div>      <div className="container mx-auto px-4 py-8">  const post = blogData.posts.find(p => p.slug[locale as keyof typeof p.slug] === slug);import BlogPostSchema from "@/components/schema/BlogPostSchema";
+
+    </div>
+
+  );        <h1 className="text-4xl font-bold mb-6">{title}</h1>
+
+}
         <div className="prose max-w-none">  
 
           {content.split('\\n').map((paragraph: string, index: number) => (
