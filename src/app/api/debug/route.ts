@@ -1,6 +1,6 @@
 // API test endpoint
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma-runtime'
+import { prisma } from '@/lib/prisma'
 
 export async function GET() {
   try {
