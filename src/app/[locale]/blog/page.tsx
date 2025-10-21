@@ -49,6 +49,7 @@ export const metadata: Metadata = {
 
 async function getBlogPosts() {
   try {
+    console.log('🔍 Fetching blog posts...');
     const posts = await prisma.blogPost.findMany({
       where: {
         active: true,
@@ -57,9 +58,10 @@ async function getBlogPosts() {
         publishedAt: "desc",
       },
     });
+    console.log(`📝 Found ${posts.length} blog posts:`, posts.map(p => ({ id: p.id, title: p.title })));
     return posts;
   } catch (error) {
-    console.error("Error fetching blog posts:", error);
+    console.error("❌ Error fetching blog posts:", error);
     return [];
   }
 }
