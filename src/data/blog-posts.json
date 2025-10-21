@@ -71,6 +71,51 @@
       "category": "Seyahat",
       "readTime": "7 dk",
       "publishedAt": "2024-10-18T14:30:00Z"
+    },
+    {
+      "id": "3",
+      "slug": {
+        "tr": "suluada-gezi-rehberi",
+        "en": "suluada-travel-guide",
+        "de": "suluada-reisefuehrer",
+        "ru": "путеводитель-по-сулуаде",
+        "pl": "przewodnik-po-suluadzie"
+      },
+      "title": {
+        "tr": "Suluada: Antalya'nın Gizli Cenneti Keşif Rehberi",
+        "en": "Suluada: Discovering Antalya's Hidden Paradise Guide",
+        "de": "Suluada: Entdeckung von Antalyas verstecktem Paradies",
+        "ru": "Сулуада: Путеводитель по скрытому раю Антальи",
+        "pl": "Suluada: Przewodnik po ukrytym raju Antalyi"
+      },
+      "excerpt": {
+        "tr": "Antalya'nın el değmemiş doğal güzelliği Suluada'yı keşfedin. Kristal berraklığındaki sular ve muhteşem manzaralar sizleri bekliyor.",
+        "en": "Discover Suluada, Antalya's untouched natural beauty. Crystal clear waters and magnificent views await you.",
+        "de": "Entdecken Sie Suluada, Antalyas unberührte Naturschönheit. Kristallklares Wasser und herrliche Aussichten erwarten Sie.",
+        "ru": "Откройте для себя Сулуаду, нетронутую природную красоту Антальи. Кристально чистые воды и великолепные виды ждут вас.",
+        "pl": "Odkryj Suluadę, nienaruszone naturalne piękno Antalyi. Krystalicznie czyste wody i wspaniałe widoki czekają na Ciebie."
+      },
+      "content": {
+        "tr": "Antalya'nın Adrasan sahillerinden sadece 2 saatlik tekne yolculuğu uzaklığında yer alan Suluada, Türkiye'nin en pristine doğal alanlarından biridir. Bu muhteşem ada, kristal berraklığındaki suları, beyaz kumlu plajları ve el değmemiş doğasıyla ziyaretçilerini büyüler.\n\nSuluada'ya Nasıl Gidilir?\nSuluada'ya ulaşmanın en popüler yolu Adrasan limanından düzenlenen günübirlik tekne turlarıdır. Bu turlar genellikle sabah saat 10:00'da başlar ve akşam 17:00'de geri döner. Tekne yolculuğu boyunca muhteşem Akdeniz manzaralarının tadını çıkarabilirsiniz.\n\nAdada Neler Yapabilirsiniz?\n• Kristal berraklığındaki suda yüzme ve snorkeling\n• Beyaz kumlu plajlarda güneşlenme\n• Doğa yürüyüşleri ve fotoğraf çekimi\n• Balık tutma aktiviteleri\n• Mağara keşfi\n\nEn İyi Ziyaret Zamanı\nSuluada'yı ziyaret etmek için en ideal aylar Mayıs-Ekim arası dönemdir. Bu dönemde deniz sıcaklığı yüzme için idealdir ve hava koşulları tekne turları için uygundur.",
+        "en": "Located just 2 hours by boat from Antalya's Adrasan coast, Suluada is one of Turkey's most pristine natural areas. This magnificent island enchants visitors with its crystal-clear waters, white sandy beaches, and untouched nature.\n\nHow to Get to Suluada?\nThe most popular way to reach Suluada is through day boat tours organized from Adrasan port. These tours typically start at 10:00 AM and return at 5:00 PM. You can enjoy magnificent Mediterranean views during the boat journey.\n\nWhat Can You Do on the Island?\n• Swimming and snorkeling in crystal-clear waters\n• Sunbathing on white sandy beaches\n• Nature walks and photography\n• Fishing activities\n• Cave exploration\n\nBest Time to Visit\nThe ideal months to visit Suluada are May-October. During this period, the sea temperature is perfect for swimming and weather conditions are suitable for boat tours.",
+        "de": "Nur 2 Stunden mit dem Boot von Antalyas Adrasan-Küste entfernt, ist Suluada eines der ursprünglichsten Naturgebiete der Türkei. Diese herrliche Insel verzaubert Besucher mit kristallklarem Wasser, weißen Sandstränden und unberührter Natur.\n\nWie kommt man nach Suluada?\nDer beliebteste Weg nach Suluada führt über Tagesbootstouren vom Hafen Adrasan. Diese Touren beginnen normalerweise um 10:00 Uhr und kehren um 17:00 Uhr zurück. Während der Bootsfahrt können Sie herrliche Mittelmeerblicke genießen.\n\nWas können Sie auf der Insel unternehmen?\n• Schwimmen und Schnorcheln in kristallklarem Wasser\n• Sonnenbaden an weißen Sandstränden\n• Naturwanderungen und Fotografie\n• Angelaktivitäten\n• Höhlenerkundung\n\nBeste Reisezeit\nDie idealen Monate für einen Besuch in Suluada sind Mai-Oktober. In dieser Zeit ist die Meerestemperatur perfekt zum Schwimmen und die Wetterbedingungen sind für Bootstouren geeignet.",
+        "ru": "Расположенный всего в 2 часах езды на лодке от побережья Адрасан в Анталье, Сулуада является одним из самых нетронутых природных районов Турции. Этот великолепный остров очаровывает посетителей кристально чистыми водами, белыми песчаными пляжами и нетронутой природой.\n\nКак добраться до Сулуады?\nСамый популярный способ добраться до Сулуады - это однодневные лодочные туры из порта Адрасан. Эти туры обычно начинаются в 10:00 и возвращаются в 17:00. Во время поездки на лодке вы можете наслаждаться великолепными видами Средиземного моря.\n\nЧто можно делать на острове?\n• Плавание и снорклинг в кристально чистых водах\n• Загорание на белых песчаных пляжах\n• Прогулки на природе и фотография\n• Рыбалка\n• Исследование пещер\n\nЛучшее время для посещения\nИдеальные месяцы для посещения Сулуады - май-октябрь. В этот период температура моря идеальна для плавания, а погодные условия подходят для лодочных туров.",
+        "pl": "Położona zaledwie 2 godziny drogi łodzią od wybrzeża Adrasan w Antalyi, Suluada jest jednym z najbardziej dziewiczych obszarów przyrodniczych Turcji. Ta wspaniała wyspa oczarowuje odwiedzających krystalicznie czystymi wodami, białymi piaszczystymi plażami i nienaruszoną przyrodą.\n\nJak dostać się do Suluady?\nNajpopularniejszym sposobem dotarcia do Suluady są jednodniowe wycieczki łodzią z portu Adrasan. Te wycieczki zazwyczaj rozpoczynają się o 10:00 i wracają o 17:00. Podczas podróży łodzią możesz cieszyć się wspaniałymi widokami na Morze Śródziemne.\n\nCo można robić na wyspie?\n• Pływanie i snorkeling w krystalicznie czystych wodach\n• Opalanie się na białych piaszczystych plażach\n• Spacery na łonie natury i fotografia\n• Wędkowanie\n• Eksploracja jaskiń\n\nNajlepszy czas na wizytę\nIdealne miesiące na odwiedzenie Suluady to maj-październik. W tym okresie temperatura morza jest idealna do pływania, a warunki pogodowe są odpowiednie do wycieczek łodzią."
+      },
+      "image": "/blog/suluada-2.jpg",
+      "author": "Kemer Residence",
+      "category": "Doğa",
+      "readTime": "8 dk",
+      "publishedAt": "2024-10-21T12:00:00Z",
+      "seoTitle": {
+        "tr": "Suluada Gezi Rehberi - Antalya'nın Gizli Cenneti | Kemer Residence",
+        "en": "Suluada Travel Guide - Antalya's Hidden Paradise | Kemer Residence"
+      },
+      "seoDescription": {
+        "tr": "Suluada'yı keşfedin! Antalya'nın el değmemiş doğal güzelliği, kristal berraklığındaki sular ve beyaz kumlu plajları ile unutulmaz bir deneyim yaşayın.",
+        "en": "Discover Suluada! Experience unforgettable moments with Antalya's untouched natural beauty, crystal clear waters and white sandy beaches."
+      },
+      "tags": ["suluada", "antalya", "doğa", "tekne turu", "adrasan", "akdeniz"]
     }
   ]
 }
