@@ -23,10 +23,11 @@ export default function BlogPage() {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch("/api/admin/blog");
+      // JSON dosyasından blog postlarını oku
+      const response = await fetch("/api/debug");
       if (response.ok) {
         const data = await response.json();
-        setPosts(data);
+        setPosts(data.posts || []);
       }
     } catch (error) {
       console.error("Error fetching posts:", error);

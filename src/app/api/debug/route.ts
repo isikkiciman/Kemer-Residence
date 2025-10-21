@@ -12,6 +12,14 @@ export async function GET() {
     return NextResponse.json({ 
       success: true, 
       blogCount,
+      posts: blogData.posts.map(blog => ({
+        id: blog.id,
+        title: blog.title,
+        author: blog.author,
+        category: blog.category,
+        publishedAt: blog.publishedAt,
+        active: true
+      })),
       blogs: blogData.posts.map(blog => ({
         id: blog.id,
         title: blog.title,
