@@ -61,7 +61,12 @@ export default async function BlogPage({
 }) {
   const { locale } = await params;
   const blogPosts = getBlogPosts();
+  console.log('📝 Blog posts count:', blogPosts.length);
+  console.log('📝 Blog posts:', blogPosts);
   const t = await getTranslations('blog');
+  
+  // Force re-render için blogPosts'u tekrar kontrol et
+  const safeBlogPosts = Array.isArray(blogPosts) ? blogPosts : [];
   
   return (
     <div className="min-h-screen">
@@ -85,13 +90,8 @@ export default async function BlogPage({
       {/* Blog Posts */}
       <section className="section-padding">
         <div className="container-custom">
-          {blogPosts.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">{t('viewAll')}</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.map((post) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {safeBlogPosts.map((post) => {
                 const title = (post.title as unknown as MultiLangText)[locale as keyof MultiLangText] || (post.title as unknown as MultiLangText).tr;
                 const excerpt = (post.excerpt as unknown as MultiLangText)[locale as keyof MultiLangText] || (post.excerpt as unknown as MultiLangText).tr;
                 const slug = (post.slug as unknown as MultiLangText)[locale as keyof MultiLangText] || (post.slug as unknown as MultiLangText).tr;
@@ -156,7 +156,6 @@ export default async function BlogPage({
                 );
               })}
             </div>
-          )}
         </div>
       </section>
     </div>
