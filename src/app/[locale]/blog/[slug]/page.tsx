@@ -1,42 +1,89 @@
-import { notFound } from "next/navigation";import type { Metadata } from "next";import type { Metadata } from "next";import type { Metadata } from "next";
+export default function BlogDetailPage() {import { notFound } from "next/navigation";import { notFound } from "next/navigation";import type { Metadata } from "next";import type { Metadata } from "next";import type { Metadata } from "next";
 
-import blogData from '@/data/blog-posts.json';
+  return (
 
-import Image from "next/image";
+    <div className="min-h-screen">import blogData from '@/data/blog-posts.json';
 
-interface PageProps {
+      <div className="container mx-auto px-4 py-8">
 
-  params: Promise<{import { Link } from "@/i18n/routing";import Image from "next/image";import Image from "next/image";
+        <h1 className="text-4xl font-bold mb-6">Blog Detay</h1>import blogData from '@/data/blog-posts.json';
 
+        <p>Blog detay sayfası yakında güncellenecek...</p>
+
+      </div>interface PageProps {
+
+    </div>
+
+  );  params: Promise<{import Image from "next/image";
+
+}
     locale: string;
 
-    slug: string;import { Calendar, User, Clock, ArrowLeft } from "lucide-react";
+    slug: string;interface PageProps {
 
   }>;
 
-}import { notFound } from "next/navigation";import { Link } from "@/i18n/routing";import { Link } from "@/i18n/routing";
+}  params: Promise<{import { Link } from "@/i18n/routing";import Image from "next/image";import Image from "next/image";
 
 
 
-export default async function BlogDetailPage({ params }: PageProps) {import Header from "@/components/Header";
+export default async function BlogDetailPage({ params }: PageProps) {    locale: string;
 
   const { locale, slug } = await params;
 
-  import BlogLanguageSwitcher from "@/components/BlogLanguageSwitcher";import { Calendar, User, Clock, ArrowLeft } from "lucide-react";import { Calendar, User, Clock, ArrowLeft } from "lucide-react";
+      slug: string;import { Calendar, User, Clock, ArrowLeft } from "lucide-react";
 
   // JSON dosyasından blog postunu bul
 
-  const post = blogData.posts.find(p => p.slug[locale as keyof typeof p.slug] === slug);import BlogPostSchema from "@/components/schema/BlogPostSchema";
+  const post = blogData.posts.find(p => {  }>;
+
+    const postSlug = p.slug as any;
+
+    return postSlug[locale] === slug;}import { notFound } from "next/navigation";import { Link } from "@/i18n/routing";import { Link } from "@/i18n/routing";
+
+  });
 
   
 
-  if (!post) {import { getTranslations } from 'next-intl/server';import { notFound } from "next/navigation";import { prisma } from "@/lib/prisma";
+  if (!post) {
 
-    notFound();
+    notFound();export default async function BlogDetailPage({ params }: PageProps) {import Header from "@/components/Header";
 
-  }import blogData from '@/data/blog-posts.json';
+  }
+
+  const { locale, slug } = await params;
+
+  const title = (post.title as any)[locale] || (post.title as any).tr;
+
+  const content = (post.content as any)[locale] || (post.content as any).tr;  import BlogLanguageSwitcher from "@/components/BlogLanguageSwitcher";import { Calendar, User, Clock, ArrowLeft } from "lucide-react";import { Calendar, User, Clock, ArrowLeft } from "lucide-react";
 
 
+
+  return (  // JSON dosyasından blog postunu bul
+
+    <div className="min-h-screen">
+
+      <div className="container mx-auto px-4 py-8">  const post = blogData.posts.find(p => p.slug[locale as keyof typeof p.slug] === slug);import BlogPostSchema from "@/components/schema/BlogPostSchema";
+
+        <h1 className="text-4xl font-bold mb-6">{title}</h1>
+
+        <div className="prose max-w-none">  
+
+          {content.split('\\n').map((paragraph: string, index: number) => (
+
+            <p key={index} className="mb-4">{paragraph}</p>  if (!post) {import { getTranslations } from 'next-intl/server';import { notFound } from "next/navigation";import { prisma } from "@/lib/prisma";
+
+          ))}
+
+        </div>    notFound();
+
+      </div>
+
+    </div>  }import blogData from '@/data/blog-posts.json';
+
+  );
+
+}
 
   const title = post.title[locale as keyof typeof post.title] || post.title.tr;import Header from "@/components/Header";import { notFound } from "next/navigation";
 
