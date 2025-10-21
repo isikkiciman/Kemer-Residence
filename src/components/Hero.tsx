@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 
 const Hero = () => {
   const t = useTranslations('hero');
-  const [bannerUrl, setBannerUrl] = useState("/uploads/hero-banner-1761051507.webp");
+  const [bannerUrl, setBannerUrl] = useState("/hero-banner.webp");
 
   useEffect(() => {
     // Fetch banner URL from settings
