@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { prisma } from '@/lib/prisma-runtime';
+import blogData from '@/data/blog-posts.json';
 
 const baseUrl = 'https://www.kemerresidence.com';
 const locales = ['tr', 'en', 'de', 'ru', 'pl'];
@@ -44,29 +44,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Add blog posts
   try {
-    const blogPosts = await prisma.blogPost.findMany({
-      where: { active: true },
-      select: {
-        slug: true,
-        updatedAt: true,
-      },
-    });
-
-    blogPosts.forEach((post) => {
+    blogData.posts.forEach((post) => {
       locales.forEach((locale) => {
-        const slugData = post.slug as unknown as MultiLangText;
-        const slug = slugData?.[locale as keyof MultiLangText] || '';
+        const slug = post.slug[locale as keyof MultiLangText] || '';
         
         if (slug) {
           sitemap.push({
             url: `${baseUrl}/${locale}/blog/${slug}`,
-            lastModified: post.updatedAt,
+            lastModified: new Date(post.publishedAt),
             changeFrequency: 'weekly',
             priority: 0.7,
             alternates: {
               languages: Object.fromEntries(
                 locales.map((loc) => {
-                  const localeSlug = slugData?.[loc as keyof MultiLangText] || slug;
+                  const localeSlug = post.slug?.[loc as keyof MultiLangText] || slug;
                   return [loc, `${baseUrl}/${loc}/blog/${localeSlug}`];
                 })
               ),

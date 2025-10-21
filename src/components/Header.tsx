@@ -50,10 +50,10 @@ const Header = ({ languageSwitcher }: HeaderProps) => {
             <Image 
               src={logoUrl} 
               alt="Kemer Residence Hotel" 
-              width={60}
-              height={24}
+              width={120}
+              height={80}
               className="!h-6 !w-auto !max-h-6 max-w-[80px] object-contain"
-              style={{ maxHeight: '24px' }}
+              style={{ maxHeight: '80px' }}
               priority
             />
           </Link>

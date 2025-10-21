@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { Calendar, User, Clock, ArrowRight } from "lucide-react";
-import { prisma } from "@/lib/prisma";
 import {getTranslations} from 'next-intl/server';
+import blogData from '@/data/blog-posts.json';
 
 interface MultiLangText {
   tr: string;
@@ -47,23 +47,11 @@ export const metadata: Metadata = {
   },
 };
 
-async function getBlogPosts() {
-  try {
-    console.log('🔍 Fetching blog posts...');
-    const posts = await prisma.blogPost.findMany({
-      where: {
-        active: true,
-      },
-      orderBy: {
-        publishedAt: "desc",
-      },
-    });
-    console.log(`📝 Found ${posts.length} blog posts:`, posts.map(p => ({ id: p.id, title: p.title })));
-    return posts;
-  } catch (error) {
-    console.error("❌ Error fetching blog posts:", error);
-    return [];
-  }
+function getBlogPosts() {
+  console.log('� Loading blog posts from JSON...');
+  return blogData.posts.sort((a, b) => 
+    new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
 }
 
 export default async function BlogPage({
@@ -72,7 +60,7 @@ export default async function BlogPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const blogPosts = await getBlogPosts();
+  const blogPosts = getBlogPosts();
   const t = await getTranslations('blog');
   
   return (

@@ -1,41 +1,30 @@
 // API test endpoint
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import blogData from '@/data/blog-posts.json'
 
 export async function GET() {
   try {
-    console.log('🔍 Database connection test...')
+    console.log('🔍 JSON blog data test...')
     
-    // Test database connection
-    await prisma.$connect()
-    console.log('✅ Database connected!')
-    
-    // Count blog posts
-    const blogCount = await prisma.blogPost.count()
+    const blogCount = blogData.posts.length
     console.log(`📝 Blog posts count: ${blogCount}`)
-    
-    // Get all blog posts
-    const blogs = await prisma.blogPost.findMany()
-    console.log('📋 Blog posts:', blogs)
     
     return NextResponse.json({ 
       success: true, 
       blogCount,
-      blogs: blogs.map(blog => ({
+      blogs: blogData.posts.map(blog => ({
         id: blog.id,
         title: blog.title,
-        active: blog.active
+        publishedAt: blog.publishedAt
       })),
-      message: 'Database connection successful!' 
+      message: 'JSON blog data loaded successfully!' 
     })
   } catch (error) {
-    console.error('❌ Database error:', error)
+    console.error('❌ JSON error:', error)
     return NextResponse.json({ 
       success: false, 
       error: error instanceof Error ? error.message : 'Unknown error',
-      message: 'Database connection failed!' 
+      message: 'JSON blog data failed!' 
     }, { status: 500 })
-  } finally {
-    await prisma.$disconnect()
   }
 }
