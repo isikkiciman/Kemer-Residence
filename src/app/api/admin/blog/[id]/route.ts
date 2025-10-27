@@ -12,6 +12,7 @@ const supportedLocales = ["tr", "en", "de", "ru", "pl"] as const;
 function revalidateBlogPaths(post: BlogPost) {
   supportedLocales.forEach((locale) => {
     revalidatePath(`/${locale}/blog`);
+    revalidatePath(`/${locale}`);
     const localizedSlug = post.slug?.[locale];
     if (localizedSlug) {
       revalidatePath(`/${locale}/blog/${localizedSlug}`);

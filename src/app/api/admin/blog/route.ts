@@ -66,6 +66,7 @@ export async function POST(request: NextRequest) {
     // Blog sayfalarını yeniden doğrula
     supportedLocales.forEach((locale) => {
       revalidatePath(`/${locale}/blog`);
+      revalidatePath(`/${locale}`);
       const localizedSlug = newPost.slug?.[locale];
       if (localizedSlug) {
         revalidatePath(`/${locale}/blog/${localizedSlug}`);
