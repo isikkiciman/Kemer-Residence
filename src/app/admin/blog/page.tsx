@@ -6,11 +6,13 @@ import Link from "next/link";
 
 interface BlogPost {
   id: string;
-  title: { tr: string };
+  title: Record<string, string>;
+  slug: Record<string, string>;
   author: string;
   category: string;
   publishedAt: string;
-  active: boolean;
+  active?: boolean;
+  readTime?: string | number;
 }
 
 export default function BlogPage() {
@@ -23,11 +25,16 @@ export default function BlogPage() {
 
   const fetchPosts = async () => {
     try {
-      // JSON dosyasından blog postlarını oku
-      const response = await fetch("/api/debug");
+      const response = await fetch("/api/admin/blog");
       if (response.ok) {
         const data = await response.json();
-        setPosts(data.posts || []);
+        const postsData: BlogPost[] = Array.isArray(data) ? data : [];
+        setPosts(
+          postsData.map((post) => ({
+            ...post,
+            active: post.active ?? true,
+          }))
+        );
       }
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -115,7 +122,7 @@ export default function BlogPage() {
                 <tr key={post.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
                     <div className="text-sm font-medium text-gray-900">
-                      {post.title.tr}
+                      {post.title?.tr || Object.values(post.title || {})[0] || "Başlık belirtilmemiş"}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -140,7 +147,11 @@ export default function BlogPage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <div className="flex justify-end gap-2">
-                      <Link href={`/tr/blog/${post.id}`} target="_blank" className="text-blue-600 hover:text-blue-900">
+                      <Link
+                        href={`/tr/blog/${post.slug?.tr || post.slug?.en || post.id}`}
+                        target="_blank"
+                        className="text-blue-600 hover:text-blue-900"
+                      >
                         <Eye size={18} />
                       </Link>
                       <Link href={`/admin/blog/${post.id}/edit`} className="text-yellow-600 hover:text-yellow-900">

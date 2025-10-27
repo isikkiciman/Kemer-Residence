@@ -1,16 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
+import {
+  BlogPost,
+  deleteBlogPost as removeBlogPost,
+  getBlogPostById,
+  updateBlogPost,
+} from "@/lib/blogData";
+
+const supportedLocales = ["tr", "en", "de", "ru", "pl"] as const;
+
+function revalidateBlogPaths(post: BlogPost) {
+  supportedLocales.forEach((locale) => {
+    revalidatePath(`/${locale}/blog`);
+    const localizedSlug = post.slug?.[locale];
+    if (localizedSlug) {
+      revalidatePath(`/${locale}/blog/${localizedSlug}`);
+    }
+  });
+}
 
 // GET - Tek bir blog yazısını getir
 export async function GET(
-  request: NextRequest,
+  _request: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await context.params;
-    const post = await prisma.blogPost.findUnique({
-      where: { id },
-    });
+    const post = await getBlogPostById(id);
 
     if (!post) {
       return NextResponse.json(
@@ -37,34 +53,19 @@ export async function PUT(
   try {
     const { id } = await context.params;
     const body = await request.json();
-    const {
-      title,
-      excerpt,
-      content,
-      author,
-      category,
-      image,
-      slug,
-      readTime,
-      active,
-    } = body;
 
-    const post = await prisma.blogPost.update({
-      where: { id },
-      data: {
-        title,
-        excerpt,
-        content,
-        author,
-        category,
-        image,
-        slug,
-        readTime: readTime?.toString(),
-        active,
-      },
-    });
+    const updatedPost = await updateBlogPost(id, body);
 
-    return NextResponse.json(post);
+    if (!updatedPost) {
+      return NextResponse.json(
+        { error: "Blog yazısı bulunamadı" },
+        { status: 404 }
+      );
+    }
+
+    revalidateBlogPaths(updatedPost);
+
+    return NextResponse.json(updatedPost);
   } catch (error) {
     console.error("Error updating blog post:", error);
     return NextResponse.json(
@@ -76,14 +77,29 @@ export async function PUT(
 
 // DELETE - Blog yazısını sil
 export async function DELETE(
-  request: NextRequest,
+  _request: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await context.params;
-    await prisma.blogPost.delete({
-      where: { id },
-    });
+    const existingPost = await getBlogPostById(id);
+
+    if (!existingPost) {
+      return NextResponse.json(
+        { error: "Blog yazısı bulunamadı" },
+        { status: 404 }
+      );
+    }
+
+    const deleted = await removeBlogPost(id);
+    if (!deleted) {
+      return NextResponse.json(
+        { error: "Blog yazısı silinemedi" },
+        { status: 500 }
+      );
+    }
+
+    revalidateBlogPaths(existingPost);
 
     return NextResponse.json({ message: "Blog yazısı silindi" });
   } catch (error) {

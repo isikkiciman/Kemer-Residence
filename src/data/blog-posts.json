@@ -1,78 +1,6 @@
 {
   "posts": [
     {
-      "id": "1",
-      "slug": {
-        "tr": "kapadokya-balon-turu",
-        "en": "cappadocia-balloon-tour",
-        "de": "kappadokien-ballonfahrt",
-        "ru": "каппадокия-воздушный-шар",
-        "pl": "kapadocja-lot-balonem"
-      },
-      "title": {
-        "tr": "Kapadokya Balon Turu Deneyimi",
-        "en": "Cappadocia Balloon Tour Experience",
-        "de": "Kappadokien Ballonfahrt Erlebnis",
-        "ru": "Опыт полета на воздушном шаре в Каппадокии",
-        "pl": "Doświadczenie lotu balonem w Kapadocji"
-      },
-      "excerpt": {
-        "tr": "Kapadokya balon turu ile unutulmaz bir deneyim yaşayın",
-        "en": "Experience an unforgettable balloon tour in Cappadocia",
-        "de": "Erleben Sie eine unvergessliche Ballonfahrt in Kappadokien",
-        "ru": "Испытайте незабываемый тур на воздушном шаре в Каппадокии",
-        "pl": "Przeżyj niezapomnianą wycieczkę balonem w Kapadocji"
-      },
-      "content": {
-        "tr": "Kapadokya'nın büyüleyici manzarasını havadan keşfetmek için balon turuna katılın. Peri bacalarının arasında süzülürken, doğanın bu eşsiz güzelliğine tanık olacaksınız.",
-        "en": "Join a balloon tour to discover Cappadocia's enchanting landscape from above. Glide among the fairy chimneys and witness nature's unique beauty.",
-        "de": "Nehmen Sie an einer Ballonfahrt teil, um Kappadokiens bezaubernde Landschaft von oben zu entdecken. Gleiten Sie zwischen den Feenkaminen und erleben Sie diese einzigartige Naturschönheit.",
-        "ru": "Присоединяйтесь к туру на воздушном шаре, чтобы открыть для себя очаровательный пейзаж Каппадокии сверху. Скользите среди каминов фей и станьте свидетелем уникальной красоты природы.",
-        "pl": "Dołącz do lotu balonem, aby odkryć urokliwy krajobraz Kapadocji z góry. Szybuj między kominami wróżek i bądź świadkiem wyjątkowego piękna natury."
-      },
-      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070",
-      "author": "Kemer Residence",
-      "category": "Turlar",
-      "readTime": "5 dk",
-      "publishedAt": "2024-10-20T10:00:00Z"
-    },
-    {
-      "id": "2",
-      "slug": {
-        "tr": "istanbul-gezilecek-yerler",
-        "en": "istanbul-places-to-visit",
-        "de": "istanbul-sehenswuerdigkeiten",
-        "ru": "стамбул-места-для-посещения",
-        "pl": "stambuł-miejsca-do-odwiedzenia"
-      },
-      "title": {
-        "tr": "İstanbul'da Gezilecek En İyi Yerler",
-        "en": "Best Places to Visit in Istanbul",
-        "de": "Die besten Sehenswürdigkeiten in Istanbul",
-        "ru": "Лучшие места для посещения в Стамбуле",
-        "pl": "Najlepsze miejsca do odwiedzenia w Stambule"
-      },
-      "excerpt": {
-        "tr": "İstanbul'un tarihi ve kültürel zenginliklerini keşfedin",
-        "en": "Discover Istanbul's historical and cultural treasures",
-        "de": "Entdecken Sie Istanbuls historische und kulturelle Schätze",
-        "ru": "Откройте для себя исторические и культурные сокровища Стамбула",
-        "pl": "Odkryj historyczne i kulturowe skarby Stambułu"
-      },
-      "content": {
-        "tr": "İstanbul, Avrupa ve Asya kıtalarını birleştiren benzersiz konumuyla tarihi ve modern yaşamı bir arada sunan muhteşem bir şehir. Hagia Sophia, Sultanahmet Camii, Topkapı Sarayı gibi tarihi yapılar şehrin zengin geçmişini yansıtırken, modern alışveriş merkezleri ve restoranlar çağdaş yaşam tarzını sergiliyor.",
-        "en": "Istanbul is a magnificent city that combines historical and modern life with its unique position connecting Europe and Asia. Historical structures like Hagia Sophia, Blue Mosque, and Topkapi Palace reflect the city's rich past, while modern shopping centers and restaurants showcase contemporary lifestyle.",
-        "de": "Istanbul ist eine großartige Stadt, die mit ihrer einzigartigen Lage zwischen Europa und Asien historisches und modernes Leben verbindet. Historische Bauwerke wie die Hagia Sophia, die Blaue Moschee und der Topkapi-Palast spiegeln die reiche Vergangenheit der Stadt wider.",
-        "ru": "Стамбул - великолепный город, который сочетает историческую и современную жизнь благодаря своему уникальному положению, соединяющему Европу и Азию. Исторические сооружения, такие как Святая София, Голубая мечеть и дворец Топкапы, отражают богатое прошлое города.",
-        "pl": "Stambuł to wspaniałe miasto, które łączy życie historyczne i nowoczesne dzięki swojej wyjątkowej pozycji łączącej Europę z Azją. Zabudowania historyczne, takie jak Hagia Sophia, Błękitny Meczet i Pałac Topkapi, odzwierciedlają bogate dziedzictwo miasta."
-      },
-      "image": "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=2070",
-      "author": "Kemer Residence",
-      "category": "Seyahat",
-      "readTime": "7 dk",
-      "publishedAt": "2024-10-18T14:30:00Z"
-    },
-    {
       "id": "3",
       "slug": {
         "tr": "suluada-gezi-rehberi",
@@ -115,7 +43,52 @@
         "tr": "Suluada'yı keşfedin! Antalya'nın el değmemiş doğal güzelliği, kristal berraklığındaki sular ve beyaz kumlu plajları ile unutulmaz bir deneyim yaşayın.",
         "en": "Discover Suluada! Experience unforgettable moments with Antalya's untouched natural beauty, crystal clear waters and white sandy beaches."
       },
-      "tags": ["suluada", "antalya", "doğa", "tekne turu", "adrasan", "akdeniz"]
+      "tags": [
+        "suluada",
+        "antalya",
+        "doğa",
+        "tekne turu",
+        "adrasan",
+        "akdeniz"
+      ],
+      "active": true
+    },
+    {
+      "id": "1",
+      "slug": {
+        "tr": "kapadokya-balon-turu",
+        "en": "cappadocia-balloon-tour",
+        "de": "kappadokien-ballonfahrt",
+        "ru": "каппадокия-воздушный-шар",
+        "pl": "kapadocja-lot-balonem"
+      },
+      "title": {
+        "tr": "Kapadokya Balon Turu Deneyimi",
+        "en": "Cappadocia Balloon Tour Experience",
+        "de": "Kappadokien Ballonfahrt Erlebnis",
+        "ru": "Опыт полета на воздушном шаре в Каппадокии",
+        "pl": "Doświadczenie lotu balonem w Kapadocji"
+      },
+      "excerpt": {
+        "tr": "Kapadokya balon turu ile unutulmaz bir deneyim yaşayın",
+        "en": "Experience an unforgettable balloon tour in Cappadocia",
+        "de": "Erleben Sie eine unvergessliche Ballonfahrt in Kappadokien",
+        "ru": "Испытайте незабываемый тур на воздушном шаре в Каппадокии",
+        "pl": "Przeżyj niezapomnianą wycieczkę balonem w Kapadocji"
+      },
+      "content": {
+        "tr": "Kapadokya'nın büyüleyici manzarasını havadan keşfetmek için balon turuna katılın. Peri bacalarının arasında süzülürken, doğanın bu eşsiz güzelliğine tanık olacaksınız.",
+        "en": "Join a balloon tour to discover Cappadocia's enchanting landscape from above. Glide among the fairy chimneys and witness nature's unique beauty.",
+        "de": "Nehmen Sie an einer Ballonfahrt teil, um Kappadokiens bezaubernde Landschaft von oben zu entdecken. Gleiten Sie zwischen den Feenkaminen und erleben Sie diese einzigartige Naturschönheit.",
+        "ru": "Присоединяйтесь к туру на воздушном шаре, чтобы открыть для себя очаровательный пейзаж Каппадокии сверху. Скользите среди каминов фей и станьте свидетелем уникальной красоты природы.",
+        "pl": "Dołącz do lotu balonem, aby odkryć urokliwy krajobraz Kapadocji z góry. Szybuj między kominami wróżek i bądź świadkiem wyjątkowego piękna natury."
+      },
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070",
+      "author": "Kemer Residence",
+      "category": "Turlar",
+      "readTime": "5 dk",
+      "publishedAt": "2024-10-20T10:00:00Z",
+      "active": true
     }
   ]
 }
