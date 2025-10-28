@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Link } from "@/i18n/routing";
 import { notFound } from 'next/navigation';
-import { Calendar, Clock, User, ArrowLeft } from 'lucide-react';
+import { Calendar, Clock, User, ArrowLeft, ExternalLink } from 'lucide-react';
 import blogPostsData from '@/data/blog-posts.json';
 
 // Blog post tipi
@@ -17,6 +17,8 @@ interface BlogPost {
   readTime: string;
   publishedAt: string;
   tags?: string[];
+  externalLink?: string;
+  externalLinkTitle?: Record<string, string>;
 }
 
 // Blog verilerini JSON'dan oku
@@ -49,6 +51,11 @@ export default async function BlogDetailPage({ params }: Props) {
   const title = post.title[locale];
   const content = post.content[locale];
   const excerpt = post.excerpt[locale];
+  const externalLink = post.externalLink;
+  const fallbackExternalLinkTitle =
+    post.externalLinkTitle && Object.values(post.externalLinkTitle).find((value) => value?.trim());
+  const externalLinkTitle =
+    post.externalLinkTitle?.[locale] || fallbackExternalLinkTitle || "Related Resource";
   
   // Tarihi formatla
   const publishDate = new Date(post.publishedAt).toLocaleDateString('tr-TR', {
@@ -140,6 +147,28 @@ export default async function BlogDetailPage({ params }: Props) {
                 })}
               </div>
             </div>
+
+            {externalLink && (
+              <div className="mt-12 p-6 border border-gray-200 rounded-xl bg-gray-50">
+                <div className="flex items-start justify-between gap-6 flex-wrap">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{externalLinkTitle}</h3>
+                    <p className="text-sm text-gray-600">
+                      Blog yazısını destekleyen kaynağı yeni sekmede inceleyebilirsiniz.
+                    </p>
+                  </div>
+                  <a
+                    href={externalLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-[--primary] text-white rounded-lg hover:bg-[--primary]/90 transition-colors"
+                  >
+                    Kaynağa git
+                    <ExternalLink size={18} />
+                  </a>
+                </div>
+              </div>
+            )}
 
             {/* Tags */}
             {post.tags && (
