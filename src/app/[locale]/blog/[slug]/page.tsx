@@ -159,7 +159,7 @@ export default async function BlogDetailPage({ params }: Props) {
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">{externalLinkTitle}</h3>
                     <p className="text-sm text-gray-600">
-                      Blog yazısını destekleyen kaynağı yeni sekmede inceleyebilirsiniz.
+                      {externalLinkButtonLabel}
                     </p>
                   </div>
                   <a
