@@ -159,7 +159,14 @@ export default async function BlogDetailPage({ params }: Props) {
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">{externalLinkTitle}</h3>
                     <p className="text-sm text-gray-600">
-                      {externalLinkButtonLabel}
+                      <a
+                        href={externalLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[--primary] hover:underline"
+                      >
+                        {externalLinkButtonLabel}
+                      </a>
                     </p>
                   </div>
                   <a
