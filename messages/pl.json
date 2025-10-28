@@ -78,9 +78,10 @@
     "copyright": "Wszelkie prawa zastrzeżone.",
     "servicesList": {
       "wifi": "Darmowe WiFi",
-      "spa": "Spa i wellness",
       "restaurant": "Restauracja i bar",
-      "parking": "Parking",
+      "parking": "Parking z obsługą",
+      "fitness": "Centrum fitness",
+      "spa": "Spa i wellness",
       "reception": "Recepcja 24/7"
     }
   },

@@ -6,12 +6,12 @@ import LatestBlog from "@/components/LatestBlog";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title: "Ana Sayfa",
-  description: "Kemer Residence - İstanbul'un kalbinde lüks konaklama deneyimi. Modern odalar, özel hizmetler ve unutulmaz bir tatil için bizi keşfedin.",
-  keywords: ["otel", "konaklama", "istanbul", "lüks otel", "butik otel", "otel rezervasyon"],
+  title: "Kemer Residence | Kemer Apart Hotels - Lüks Konaklama",
+  description: "Kemer Residence - Kemer'in kalbinde lüks konaklama deneyimi. Modern odalar, özel hizmetler ve unutulmaz bir tatil için bizi keşfedin.",
+  keywords: ["otel", "apart hotels", "konaklama", "kemer", "lüks otel", "butik otel", "otel rezervasyon"],
   openGraph: {
     title: "Kemer Residence - Lüks Konaklama Deneyimi",
-    description: "İstanbul'un kalbinde lüks konaklama deneyimi",
+    description: "Kemer'in kalbinde lüks konaklama deneyimi",
     url: '/',
     images: [
       {

@@ -78,9 +78,10 @@
     "copyright": "Alle Rechte vorbehalten.",
     "servicesList": {
       "wifi": "Kostenloses WLAN",
-      "spa": "Spa & Wellness",
       "restaurant": "Restaurant & Bar",
-      "parking": "Parkplatz",
+      "parking": "Valet-Parken",
+      "fitness": "Fitnesscenter",
+      "spa": "Spa & Wellness",
       "reception": "24/7 Rezeption"
     }
   },

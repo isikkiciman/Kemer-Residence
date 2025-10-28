@@ -78,9 +78,10 @@
     "copyright": "Tüm hakları saklıdır.",
     "servicesList": {
       "wifi": "Ücretsiz WiFi",
-      "spa": "Spa & Wellness",
       "restaurant": "Restoran & Bar",
-      "parking": "Otopark",
+      "parking": "Vale Otopark",
+      "fitness": "Fitness Center",
+      "spa": "Spa & Wellness",
       "reception": "24/7 Resepsiyon"
     }
   },

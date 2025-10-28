@@ -78,9 +78,10 @@
     "copyright": "All rights reserved.",
     "servicesList": {
       "wifi": "Free WiFi",
-      "spa": "Spa & Wellness",
       "restaurant": "Restaurant & Bar",
-      "parking": "Parking",
+      "parking": "Valet Parking",
+      "fitness": "Fitness Center",
+      "spa": "Spa & Wellness",
       "reception": "24/7 Reception"
     }
   },
