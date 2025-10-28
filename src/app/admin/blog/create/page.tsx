@@ -46,6 +46,7 @@ export default function CreateBlogPage() {
     seoKeywords: { tr: "", en: "", de: "", ru: "", pl: "" },
     externalLink: "",
     externalLinkTitle: { tr: "", en: "", de: "", ru: "", pl: "" },
+    externalLinkButton: { tr: "Kaynağa git", en: "Visit resource", de: "Zur Quelle", ru: "Перейти к источнику", pl: "Przejdź do źródła" },
     author: "",
     category: "",
     readTime: 5,
@@ -368,6 +369,28 @@ export default function CreateBlogPage() {
                 }
                 placeholder="İlgili kaynak başlığı"
                 className="w-full px-4 py-2 text-base font-semibold border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+
+            {/* External Link Button Label */}
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2">
+                Dış Link Buton Metni <span className="text-xs text-gray-500">(Butonda görünecek)</span>
+              </label>
+              <input
+                type="text"
+                value={formData.externalLinkButton[activeTab as keyof typeof formData.externalLinkButton]}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    externalLinkButton: {
+                      ...formData.externalLinkButton,
+                      [activeTab]: e.target.value,
+                    },
+                  })
+                }
+                placeholder="Buton metni"
+                className="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
           </div>

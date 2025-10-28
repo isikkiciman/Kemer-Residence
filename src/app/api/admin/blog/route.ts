@@ -58,6 +58,7 @@ export async function POST(request: NextRequest) {
       seoKeywords: body.seoKeywords,
       externalLink: body.externalLink,
       externalLinkTitle: body.externalLinkTitle,
+      externalLinkButton: body.externalLinkButton,
       images: body.images ?? [],
     };
 

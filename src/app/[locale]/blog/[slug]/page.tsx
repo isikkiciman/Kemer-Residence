@@ -19,6 +19,7 @@ interface BlogPost {
   tags?: string[];
   externalLink?: string;
   externalLinkTitle?: Record<string, string>;
+  externalLinkButton?: Record<string, string>;
 }
 
 // Blog verilerini JSON'dan oku
@@ -56,6 +57,10 @@ export default async function BlogDetailPage({ params }: Props) {
     post.externalLinkTitle && Object.values(post.externalLinkTitle).find((value) => value?.trim());
   const externalLinkTitle =
     post.externalLinkTitle?.[locale] || fallbackExternalLinkTitle || "Related Resource";
+  const fallbackExternalLinkButton =
+    post.externalLinkButton && Object.values(post.externalLinkButton).find((value) => value?.trim());
+  const externalLinkButtonLabel =
+    post.externalLinkButton?.[locale] || fallbackExternalLinkButton || "Kaynağa git";
   
   // Tarihi formatla
   const publishDate = new Date(post.publishedAt).toLocaleDateString('tr-TR', {
@@ -163,7 +168,7 @@ export default async function BlogDetailPage({ params }: Props) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-[--primary] text-white rounded-lg hover:bg-[--primary]/90 transition-colors"
                   >
-                    Kaynağa git
+                    {externalLinkButtonLabel}
                     <ExternalLink size={18} />
                   </a>
                 </div>

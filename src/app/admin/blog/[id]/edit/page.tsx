@@ -41,6 +41,7 @@ interface BlogFormState {
   seoKeywords: MultilingualField;
   externalLink: string;
   externalLinkTitle: MultilingualField;
+  externalLinkButton: MultilingualField;
   author: string;
   category: string;
   readTime: number;
@@ -104,6 +105,7 @@ export default function EditBlogPage() {
       seoKeywords: emptyLocales(),
       externalLink: "",
       externalLinkTitle: emptyLocales(),
+  externalLinkButton: emptyLocales(),
       author: "",
       category: "",
       readTime: 5,
@@ -145,6 +147,7 @@ export default function EditBlogPage() {
           seoKeywords: ensureLocales(data.seoKeywords),
           externalLink: data.externalLink ?? "",
           externalLinkTitle: ensureLocales(data.externalLinkTitle),
+          externalLinkButton: ensureLocales(data.externalLinkButton),
           author: data.author ?? "",
           category: data.category ?? "",
           readTime: parseReadTime(data.readTime),
@@ -490,6 +493,19 @@ export default function EditBlogPage() {
                 onChange={(e) => updateLocalizedField("externalLinkTitle", activeTab, e.target.value)}
                 placeholder="İlgili kaynak başlığı"
                 className="w-full px-4 py-2 text-base font-semibold border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2">
+                Dış Link Buton Metni
+              </label>
+              <input
+                type="text"
+                value={formData.externalLinkButton[activeTab]}
+                onChange={(e) => updateLocalizedField("externalLinkButton", activeTab, e.target.value)}
+                placeholder="Buton metni"
+                className="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
           </div>

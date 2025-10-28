@@ -35,6 +35,7 @@ export interface BlogPost {
   seoKeywords?: Partial<MultilingualText>;
   externalLink?: string;
   externalLinkTitle?: Partial<MultilingualText>;
+  externalLinkButton?: Partial<MultilingualText>;
   images?: BlogImage[];
 }
 
@@ -123,6 +124,14 @@ export async function updateBlogPost(id: string, updatedFields: Partial<BlogPost
     excerpt: { ...existingPost.excerpt, ...updatedFields.excerpt },
     content: { ...existingPost.content, ...updatedFields.content },
     readTime: formatReadTime(updatedFields.readTime ?? existingPost.readTime),
+    externalLinkTitle: {
+      ...existingPost.externalLinkTitle,
+      ...updatedFields.externalLinkTitle,
+    },
+    externalLinkButton: {
+      ...existingPost.externalLinkButton,
+      ...updatedFields.externalLinkButton,
+    },
   };
 
   data.posts[index] = updatedPost;
