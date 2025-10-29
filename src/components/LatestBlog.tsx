@@ -56,6 +56,10 @@ const LatestBlog = async () => {
             {posts.map((post) => {
               const title = getLocalizedValue(post.title, locale);
               const excerpt = getLocalizedValue(post.excerpt, locale);
+              const mainImage =
+                post.images?.find((image) => image.isMain)?.url || post.image;
+              const mainAlt =
+                post.images?.find((image) => image.isMain)?.alt?.[locale] || title;
               const slug =
                 getLocalizedValue(post.slug, locale) ||
                 post.slug?.tr ||
@@ -77,8 +81,8 @@ const LatestBlog = async () => {
                 >
                   <div className="relative h-56">
                     <Image
-                      src={post.image}
-                      alt={title}
+                      src={mainImage}
+                      alt={mainAlt || title}
                       fill
                       className="object-cover"
                       sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 90vw"

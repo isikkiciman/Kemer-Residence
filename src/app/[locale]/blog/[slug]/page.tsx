@@ -2,30 +2,32 @@ import Image from 'next/image';
 import { Link } from "@/i18n/routing";
 import { notFound } from 'next/navigation';
 import { Calendar, Clock, User, ArrowLeft, ExternalLink } from 'lucide-react';
-import blogPostsData from '@/data/blog-posts.json';
+import {
+  getBlogPostBySlug,
+  type MultilingualText,
+} from "@/lib/blogData";
 
-// Blog post tipi
-interface BlogPost {
-  id: string;
-  slug: Record<string, string>;
-  title: Record<string, string>;
-  excerpt: Record<string, string>;
-  content: Record<string, string>;
-  image: string;
-  author: string;
-  category: string;
-  readTime: string;
-  publishedAt: string;
-  tags?: string[];
-  externalLink?: string;
-  externalLinkLocalized?: Record<string, string>;
-  externalLinkTitle?: Record<string, string>;
-  externalLinkButton?: Record<string, string>;
-}
+function getLocalizedValue(
+  value: MultilingualText | Partial<MultilingualText> | undefined,
+  locale: string,
+  fallbackLocale = "tr"
+): string {
+  if (!value) {
+    return "";
+  }
 
-// Blog verilerini JSON'dan oku
-function getBlogPosts(): BlogPost[] {
-  return blogPostsData.posts as BlogPost[];
+  const localized = (value as Record<string, string>)[locale];
+  if (localized && localized.trim()) {
+    return localized;
+  }
+
+  const fallback = (value as Record<string, string>)[fallbackLocale];
+  if (fallback && fallback.trim()) {
+    return fallback;
+  }
+
+  const anyValue = Object.values(value).find((entry) => entry?.trim());
+  return anyValue ?? "";
 }
 
 interface Props {
@@ -37,34 +39,25 @@ interface Props {
 
 export default async function BlogDetailPage({ params }: Props) {
   const { locale, slug } = await params;
-  const blogPosts = getBlogPosts();
-  
-  // Slug'a göre blog yazısını bul
-  const post = blogPosts.find((post: BlogPost) => {
-    const postSlug = post.slug[locale];
-    return postSlug === slug;
-  });
+  const post = await getBlogPostBySlug(slug);
 
-  // Blog yazısı bulunamazsa 404
-  if (!post) {
+  if (!post || post.active === false) {
     notFound();
   }
 
-  const title = post.title[locale];
-  const content = post.content[locale];
-  const excerpt = post.excerpt[locale];
-  const localizedExternalLinkFallback =
-    post.externalLinkLocalized && Object.values(post.externalLinkLocalized).find((value) => value?.trim());
+  const title = getLocalizedValue(post.title, locale);
+  const content = getLocalizedValue(post.content, locale);
+  const excerpt = getLocalizedValue(post.excerpt, locale);
   const externalLink =
-    post.externalLinkLocalized?.[locale] || localizedExternalLinkFallback || post.externalLink;
-  const fallbackExternalLinkTitle =
-    post.externalLinkTitle && Object.values(post.externalLinkTitle).find((value) => value?.trim());
+    getLocalizedValue(post.externalLinkLocalized, locale) || post.externalLink || undefined;
   const externalLinkTitle =
-    post.externalLinkTitle?.[locale] || fallbackExternalLinkTitle || "Related Resource";
-  const fallbackExternalLinkButton =
-    post.externalLinkButton && Object.values(post.externalLinkButton).find((value) => value?.trim());
+    getLocalizedValue(post.externalLinkTitle, locale) || "Related Resource";
   const externalLinkButtonLabel =
-    post.externalLinkButton?.[locale] || fallbackExternalLinkButton || "Kaynağa git";
+    getLocalizedValue(post.externalLinkButton, locale) || "Kaynağa git";
+  const mainImage =
+    post.images?.find((image) => image.isMain)?.url || post.image;
+  const mainImageAlt =
+    post.images?.find((image) => image.isMain)?.alt?.[locale] || title;
   
   // Tarihi formatla
   const publishDate = new Date(post.publishedAt).toLocaleDateString('tr-TR', {
@@ -79,8 +72,8 @@ export default async function BlogDetailPage({ params }: Props) {
       <section className="relative h-96 flex items-center justify-center">
         <div className="absolute inset-0 bg-black/50 z-10"></div>
         <Image
-          src={post.image}
-          alt={title}
+          src={mainImage}
+          alt={mainImageAlt || title}
           fill
           className="object-cover"
         />
@@ -187,7 +180,7 @@ export default async function BlogDetailPage({ params }: Props) {
             )}
 
             {/* Tags */}
-            {post.tags && (
+            {post.tags && post.tags.length > 0 && (
               <div className="mt-12 pt-8 border-t">
                 <h4 className="text-lg font-semibold mb-4 text-gray-900">Etiketler:</h4>
                 <div className="flex flex-wrap gap-2">
