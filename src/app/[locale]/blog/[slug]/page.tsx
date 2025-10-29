@@ -18,6 +18,7 @@ interface BlogPost {
   publishedAt: string;
   tags?: string[];
   externalLink?: string;
+  externalLinkLocalized?: Record<string, string>;
   externalLinkTitle?: Record<string, string>;
   externalLinkButton?: Record<string, string>;
 }
@@ -52,7 +53,10 @@ export default async function BlogDetailPage({ params }: Props) {
   const title = post.title[locale];
   const content = post.content[locale];
   const excerpt = post.excerpt[locale];
-  const externalLink = post.externalLink;
+  const localizedExternalLinkFallback =
+    post.externalLinkLocalized && Object.values(post.externalLinkLocalized).find((value) => value?.trim());
+  const externalLink =
+    post.externalLinkLocalized?.[locale] || localizedExternalLinkFallback || post.externalLink;
   const fallbackExternalLinkTitle =
     post.externalLinkTitle && Object.values(post.externalLinkTitle).find((value) => value?.trim());
   const externalLinkTitle =

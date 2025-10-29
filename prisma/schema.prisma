@@ -51,6 +51,7 @@ model BlogPost {
   externalLink       String?  // Dış link URL
   externalLinkTitle  Json?    // Dış link başlığı (5 dil)
   externalLinkButton Json?    // Dış link buton metni (5 dil)
+  externalLinkLocalized Json? // {locale: url}
   tags               Json?    // Etiket listesi
   images             Json?    // [{id, url, alt:{tr,en,...}, isMain}]
   active             Boolean  @default(true)

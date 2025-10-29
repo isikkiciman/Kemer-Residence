@@ -36,6 +36,7 @@ export interface BlogPost {
   externalLink?: string | null;
   externalLinkTitle?: Partial<MultilingualText>;
   externalLinkButton?: Partial<MultilingualText>;
+  externalLinkLocalized?: Partial<MultilingualText>;
   images?: BlogImage[];
   createdAt?: string;
   updatedAt?: string;
@@ -60,6 +61,7 @@ export interface BlogPostInput {
   externalLink?: string | null;
   externalLinkTitle?: Partial<MultilingualText> | null;
   externalLinkButton?: Partial<MultilingualText> | null;
+  externalLinkLocalized?: Partial<MultilingualText> | null;
   images?: BlogImage[] | null;
 }
 
@@ -209,6 +211,7 @@ function mapPrismaBlogPost(post: PrismaBlogPost): BlogPost {
     externalLink: post.externalLink,
     externalLinkTitle: parseMultilingualPartial(post.externalLinkTitle),
     externalLinkButton: parseMultilingualPartial(post.externalLinkButton),
+  externalLinkLocalized: parseMultilingualPartial(post.externalLinkLocalized),
     images: parseImages(post.images) ?? [],
     createdAt: post.createdAt.toISOString(),
     updatedAt: post.updatedAt.toISOString(),
@@ -248,6 +251,7 @@ function buildCreateInput(input: BlogPostInput): Prisma.BlogPostCreateInput {
     externalLink: input.externalLink ?? null,
     externalLinkTitle: optionalJson(input.externalLinkTitle),
     externalLinkButton: optionalJson(input.externalLinkButton),
+    externalLinkLocalized: optionalJson(input.externalLinkLocalized),
     images: optionalJson(input.images, []),
   };
 }
@@ -372,6 +376,13 @@ export async function updateBlogPost(
     data.externalLinkButton = mergeJsonValue(
       existing.externalLinkButton,
       updatedFields.externalLinkButton
+    );
+  }
+
+  if (updatedFields.externalLinkLocalized !== undefined) {
+    data.externalLinkLocalized = mergeJsonValue(
+      existing.externalLinkLocalized,
+      updatedFields.externalLinkLocalized
     );
   }
 

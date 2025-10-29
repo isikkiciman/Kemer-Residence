@@ -1,135 +1,138 @@
 {
   "posts": [
     {
-      "id": "3",
+      "id": "suluada-2025",
       "slug": {
-        "tr": "suluada-gezi-rehberi",
-        "en": "suluada-travel-guide",
-        "de": "suluada-reisefuehrer",
-        "ru": "путеводитель-по-сулуаде",
-        "pl": "przewodnik-po-suluadzie"
+        "tr": "suluada-adrasan-tekne-turu",
+        "en": "suluada-adrasan-boat-tour",
+        "de": "suluada-adrasan-bootstour",
+        "ru": "suluada-adrasan-morskoj-tur",
+        "pl": "rejs-suluada-adrasan"
       },
       "title": {
-        "tr": "Suluada: Antalya'nın Gizli Cenneti Keşif Rehberi",
-        "en": "Suluada: Discovering Antalya's Hidden Paradise Guide",
-        "de": "Suluada: Entdeckung von Antalyas verstecktem Paradies",
-        "ru": "Сулуада: Путеводитель по скрытому раю Антальи",
-        "pl": "Suluada: Przewodnik po ukrytym raju Antalyi"
+        "tr": "Suluada & Adrasan Tekne Turu: Akdeniz'in Turkuaz Cennetinde Bir Gün",
+        "en": "Suluada & Adrasan Boat Tour: A Day in the Turquoise Mediterranean",
+        "de": "Suluada & Adrasan Bootstour: Ein Tag im türkisfarbenen Mittelmeer",
+        "ru": "Тур на Сулуада и Адрасан: день в бирюзовом Средиземном море",
+        "pl": "Rejs do Suluady i Adrasan: dzień w turkusowym Morzu Śródziemnym"
       },
       "excerpt": {
-        "tr": "aAntalya'nın el değmemiş doğal güzelliği Suluada'yı keşfedin. Kristal berraklığındaki sular ve muhteşem manzaralar sizleri bekliyor.",
-        "en": "Discover Suluada, Antalya's untouched natural beauty. Crystal clear waters and magnificent views await you.",
-        "de": "Entdecken Sie Suluada, Antalyas unberührte Naturschönheit. Kristallklares Wasser und herrliche Aussichten erwarten Sie.",
-        "ru": "Откройте для себя Сулуаду, нетронутую природную красоту Антальи. Кристально чистые воды и великолепные виды ждут вас.",
-        "pl": "Odkryj Suluadę, nienaruszone naturalne piękno Antalyi. Krystalicznie czyste wody i wspaniałe widoki czekają na Ciebie."
+        "tr": "Kemer çıkışlı Suluada tekne turu ile turkuaz koylarda yüzme molaları, kireç taşı plajları ve Üç Adalar rotasıyla unutulmaz bir gün yaşayın.",
+        "en": "Set sail from Kemer to Suluada for lagoon swimming, white-sand beaches and the Three Islands route in one unforgettable day.",
+        "de": "Starten Sie von Kemer zur Suluada-Bootstour und erleben Sie Lagunen, weiße Sandstrände und die Drei-Inseln-Route an einem unvergesslichen Tag.",
+        "ru": "Отправляйтесь из Кемера на Сулуада: купание в лагунах, белоснежные пляжи и маршрут Трёх островов в один незабываемый день.",
+        "pl": "Wypłyń z Kemeru na Suluadę – kąpiele w lagunach, białe plaże i trasa Trzech Wysp w jeden niezapomniany dzień."
       },
       "content": {
-        "tr": "Antalya'nın Adrasan sahillerinden sadece 2 saatlik tekne yolculuğu uzaklığında yer alan Suluada, Türkiye'nin en pristine doğal alanlarından biridir. Bu muhteşem ada, kristal berraklığındaki suları, beyaz kumlu plajları ve el değmemiş doğasıyla ziyaretçilerini büyüler.\n\nSuluada'ya Nasıl Gidilir?\nSuluada'ya ulaşmanın en popüler yolu Adrasan limanından düzenlenen günübirlik tekne turlarıdır. Bu turlar genellikle sabah saat 10:00'da başlar ve akşam 17:00'de geri döner. Tekne yolculuğu boyunca muhteşem Akdeniz manzaralarının tadını çıkarabilirsiniz.\n\nAdada Neler Yapabilirsiniz?\n• Kristal berraklığındaki suda yüzme ve snorkeling\n• Beyaz kumlu plajlarda güneşlenme\n• Doğa yürüyüşleri ve fotoğraf çekimi\n• Balık tutma aktiviteleri\n• Mağara keşfi\n\nEn İyi Ziyaret Zamanı\nSuluada'yı ziyaret etmek için en ideal aylar Mayıs-Ekim arası dönemdir. Bu dönemde deniz sıcaklığı yüzme için idealdir ve hava koşulları tekne turları için uygundur.",
-        "en": "Located just 2 hours by boat from Antalya's Adrasan coast, Suluada is one of Turkey's most pristine natural areas. This magnificent island enchants visitors with its crystal-clear waters, white sandy beaches, and untouched nature.\n\nHow to Get to Suluada?\nThe most popular way to reach Suluada is through day boat tours organized from Adrasan port. These tours typically start at 10:00 AM and return at 5:00 PM. You can enjoy magnificent Mediterranean views during the boat journey.\n\nWhat Can You Do on the Island?\n• Swimming and snorkeling in crystal-clear waters\n• Sunbathing on white sandy beaches\n• Nature walks and photography\n• Fishing activities\n• Cave exploration\n\nBest Time to Visit\nThe ideal months to visit Suluada are May-October. During this period, the sea temperature is perfect for swimming and weather conditions are suitable for boat tours.",
-        "de": "Nur 2 Stunden mit dem Boot von Antalyas Adrasan-Küste entfernt, ist Suluada eines der ursprünglichsten Naturgebiete der Türkei. Diese herrliche Insel verzaubert Besucher mit kristallklarem Wasser, weißen Sandstränden und unberührter Natur.\n\nWie kommt man nach Suluada?\nDer beliebteste Weg nach Suluada führt über Tagesbootstouren vom Hafen Adrasan. Diese Touren beginnen normalerweise um 10:00 Uhr und kehren um 17:00 Uhr zurück. Während der Bootsfahrt können Sie herrliche Mittelmeerblicke genießen.\n\nWas können Sie auf der Insel unternehmen?\n• Schwimmen und Schnorcheln in kristallklarem Wasser\n• Sonnenbaden an weißen Sandstränden\n• Naturwanderungen und Fotografie\n• Angelaktivitäten\n• Höhlenerkundung\n\nBeste Reisezeit\nDie idealen Monate für einen Besuch in Suluada sind Mai-Oktober. In dieser Zeit ist die Meerestemperatur perfekt zum Schwimmen und die Wetterbedingungen sind für Bootstouren geeignet.",
-        "ru": "Расположенный всего в 2 часах езды на лодке от побережья Адрасан в Анталье, Сулуада является одним из самых нетронутых природных районов Турции. Этот великолепный остров очаровывает посетителей кристально чистыми водами, белыми песчаными пляжами и нетронутой природой.\n\nКак добраться до Сулуады?\nСамый популярный способ добраться до Сулуады - это однодневные лодочные туры из порта Адрасан. Эти туры обычно начинаются в 10:00 и возвращаются в 17:00. Во время поездки на лодке вы можете наслаждаться великолепными видами Средиземного моря.\n\nЧто можно делать на острове?\n• Плавание и снорклинг в кристально чистых водах\n• Загорание на белых песчаных пляжах\n• Прогулки на природе и фотография\n• Рыбалка\n• Исследование пещер\n\nЛучшее время для посещения\nИдеальные месяцы для посещения Сулуады - май-октябрь. В этот период температура моря идеальна для плавания, а погодные условия подходят для лодочных туров.",
-        "pl": "Położona zaledwie 2 godziny drogi łodzią od wybrzeża Adrasan w Antalyi, Suluada jest jednym z najbardziej dziewiczych obszarów przyrodniczych Turcji. Ta wspaniała wyspa oczarowuje odwiedzających krystalicznie czystymi wodami, białymi piaszczystymi plażami i nienaruszoną przyrodą.\n\nJak dostać się do Suluady?\nNajpopularniejszym sposobem dotarcia do Suluady są jednodniowe wycieczki łodzią z portu Adrasan. Te wycieczki zazwyczaj rozpoczynają się o 10:00 i wracają o 17:00. Podczas podróży łodzią możesz cieszyć się wspaniałymi widokami na Morze Śródziemne.\n\nCo można robić na wyspie?\n• Pływanie i snorkeling w krystalicznie czystych wodach\n• Opalanie się na białych piaszczystych plażach\n• Spacery na łonie natury i fotografia\n• Wędkowanie\n• Eksploracja jaskiń\n\nNajlepszy czas na wizytę\nIdealne miesiące na odwiedzenie Suluady to maj-październik. W tym okresie temperatura morza jest idealna do pływania, a warunki pogodowe są odpowiednie do wycieczek łodzią."
+        "tr": "Antalya'nın Adrasan koyundan demir alan Suluada tekne turu, Kemer konuklarımızın gün boyu turkuaz sularla buluştuğu en popüler deneyimlerden biridir. Kireç taşı kayalıklarının gölgesinde serinleyebilir, beyaz kumlu plajlarda mola verip Akdeniz'in saklı köşelerini keşfedebilirsiniz.\n\nTur boyunca öne çıkan duraklar:\n• Suluada'nın iki yüzme koyu: berraklıklarıyla Maldivleri aratmayan durgun lagünler\n• Üç Adalar rotası: Korsan Koyu, Amerikan Koyu ve Ceneviz Koyu'nda yüzme molaları\n• Adrasan sahilinden kalkış ve gün batımına yakın dönüş\n\nTekne turu programı:\n• 09:30 Kemer'den hareket ve 10:30'da Adrasan limanına varış\n• 11:00 - 15:30 arası Suluada ve Üç Adalar'da yüzme molaları ile öğle yemeği\n• 16:30 Adrasan dönüşü, 18:00 Kemer otele transfer\n\nYanınıza almayı unutmayın:\n• Deniz gözlüğü ve deniz ayakkabısı\n• Güneş kremi ve şapka\n• Havlu ve yedek kıyafet\n• Fotoğraf makinesi veya su geçirmez telefon kılıfı\n\nTur fiyatına rehberlik hizmeti, öğle yemeği ve otel transferleri dahildir. Dalış ekipmanı kiralamak, içecekler veya profesyonel fotoğraf hizmeti ekstra ücrete tabidir.\n\nRezervasyon için: https://royalfuntour.com/tr/turlar/adrasan-tekne-turu-kemer-cikisli-suluada-uc-adalar",
+        "en": "The Suluada boat tour departing from Adrasan Bay is one of the most beloved day trips for our Kemer guests. Expect a relaxed cruise through turquoise coves, limestone cliffs and hidden beaches that still feel untouched.\n\nHighlights along the route:\n• Twin swimming stops around Suluada with glass-clear lagoons nicknamed the Turkish Maldives\n• Three Islands circuit with breaks at Pirate Bay, American Bay and Genoese Bay\n• Departure from Adrasan harbor and return to Kemer around sunset\n\nDaily schedule:\n• 09:30 hotel pick-up in Kemer and transfer to Adrasan (arrival 10:30)\n• 11:00 – 15:30 swimming stops around Suluada and Three Islands plus onboard lunch\n• 16:30 departure from Adrasan, 18:00 hotel drop-off in Kemer\n\nWhat to bring:\n• Snorkel mask and reef shoes\n• High SPF sunscreen and a hat\n• Towel and spare clothes\n• Camera or waterproof phone case\n\nGuiding services, lunch and hotel transfers are included in the tour price. Equipment rental, drinks and professional photography are available for an extra fee.\n\nBook now: https://royalfuntour.com/en/turlar/adrasan-suluada-boat-tour-from-kemer-three-islands-included",
+        "de": "Die Bootstour nach Suluada, die in der Bucht von Adrasan startet, zählt zu den beliebtesten Tagesausflügen für unsere Gäste aus Kemer. Auf Sie warten türkisfarbene Buchten, kalksteinfarbene Klippen und naturbelassene Strände.\n\nHöhepunkte der Route:\n• Zwei Badestopps rund um Suluada mit glasklaren Lagunen, die auch als \"Türkische Malediven\" bekannt sind\n• Drei-Inseln-Runde mit Stopps in der Piratenbucht, der Amerikanerbucht und der Genueser Bucht\n• Abfahrt im Hafen von Adrasan und Rückkehr nach Kemer gegen Sonnenuntergang\n\nTagesablauf:\n• 09:30 Abholung in Kemer und Transfer nach Adrasan (Ankunft 10:30)\n• 11:00 – 15:30 Badepausen rund um Suluada und die Drei Inseln inklusive Mittagessen an Bord\n• 16:30 Abfahrt aus Adrasan, 18:00 Rückkehr ins Hotel in Kemer\n\nDas sollten Sie einpacken:\n• Schnorchelmaske und Badeschuhe\n• Sonnenschutz mit hohem Lichtschutzfaktor und Hut\n• Handtuch und Wechselkleidung\n• Kamera oder wasserdichte Handyhülle\n\nIm Reisepreis enthalten sind Reiseleitung, Mittagessen und Hoteltransfers. Ausrüstungsverleih, Getränke und professionelle Fotos können optional hinzugebucht werden.\n\nJetzt buchen: https://royalfuntour.com/de/turlar/adrasan-suluada-bootstour-ab-kemer-inklusive-drei-inseln",
+        "ru": "Морская прогулка на Сулуада, отправляющаяся из бухты Адрасан, — один из самых любимых дневных туров гостей из Кемера. Вас ждут бирюзовые бухты, известняковые скалы и уединённые пляжи, сохранившие природную красоту.\n\nОсновные остановки маршрута:\n• Две купальные стоянки у Сулуады с кристально чистыми лагунами, которые называют \"турецкими Мальдивами\"\n• Маршрут по Трём островам с остановками в Бухте пиратов, Американской бухте и Генуэзской бухте\n• Отправление из порта Адрасан и возвращение в Кемер к закату\n\nРасписание дня:\n• 09:30 выезд из отелей Кемера и трансфер в Адрасан (прибытие 10:30)\n• 11:00 – 15:30 купальные остановки на Сулуада и Трёх островах, обед на борту\n• 16:30 отправление из Адрасана, 18:00 возвращение в отель Кемера\n\nЧто взять с собой:\n• Маску для сноркелинга и пляжную обувь\n• Солнцезащитный крем с высоким SPF и головной убор\n• Полотенце и сменную одежду\n• Камеру или водонепроницаемый чехол для телефона\n\nСтоимость тура включает услуги гида, обед и трансферы из отеля. Аренда оборудования, напитки и профессиональная фотосъёмка оплачиваются дополнительно.\n\nБронируйте сейчас: https://royalfuntour.com/ru/turlar/morskaya-ekskursiya-iz-kemera-suluada-adrasan-i-tri-ostrova",
+        "pl": "Rejs na Suluadę, rozpoczynający się w zatoce Adrasan, to jeden z ulubionych całodziennych wypadów naszych gości z Kemeru. Czekają na Ciebie turkusowe zatoczki, wapienne klify i dziewicze plaże.\n\nNajciekawsze punkty trasy:\n• Dwa postoje kąpielowe przy Suluadzie z krystalicznymi lagunami zwanymi \"tureckimi Malediwami\"\n• Pętla Trzech Wysp z przerwami w Zatoce Piratów, Zatoce Amerykańskiej i Zatoce Genueńskiej\n• Wypłynięcie z portu w Adrasan i powrót do Kemeru o zachodzie słońca\n\nPlan dnia:\n• 09:30 odbiór z hoteli w Kemerze i transfer do Adrasan (przyjazd 10:30)\n• 11:00 – 15:30 postoje na kąpiele wokół Suluady i Trzech Wysp oraz obiad na pokładzie\n• 16:30 wypłynięcie z Adrasan, 18:00 powrót do hotelu w Kemerze\n\nCo spakować:\n• Maskę do nurkowania i buty do wody\n• Krem z filtrem SPF i kapelusz\n• Ręcznik oraz zapasowe ubrania\n• Aparat fotograficzny lub wodoodporne etui na telefon\n\nW cenę rejsu wliczone są usługi przewodnika, obiad i transfery hotelowe. Wypożyczenie sprzętu, napoje oraz profesjonalne zdjęcia dostępne są za dodatkową opłatą.\n\nZarezerwuj teraz: https://royalfuntour.com/pl/turlar/adrasan-suluada-rejs-z-kemer-tureckie-malediwy"
       },
-      "image": "/uploads/logo-1761662744575.webp",
+      "image": "/uploads/suluada-main.jpg",
       "author": "Kemer Residence",
-      "category": "Doğa",
-      "readTime": "8 dk",
-      "publishedAt": "2024-10-21T12:00:00Z",
+      "category": "Turlar",
+      "readTime": "7 dk",
+      "publishedAt": "2025-10-29T09:00:00Z",
       "seoTitle": {
-        "tr": "Suluada Gezi Rehberi - Antalya'nın Gizli Cenneti | Kemer Residence",
-        "en": "Suluada Travel Guide - Antalya's Hidden Paradise | Kemer Residence",
-        "de": "",
-        "ru": "",
-        "pl": ""
+        "tr": "Suluada & Adrasan Tekne Turu | Kemer Residence Konuk Rehberi",
+        "en": "Suluada & Adrasan Boat Tour Guide | Kemer Residence",
+        "de": "Suluada & Adrasan Bootstour Ratgeber | Kemer Residence",
+        "ru": "Экскурсия на Сулуада и Адрасан | Гид Kemer Residence",
+        "pl": "Przewodnik po rejsie Suluada & Adrasan | Kemer Residence"
       },
       "seoDescription": {
-        "tr": "Suluada'yı keşfedin! Antalya'nın el değmemiş doğal güzelliği, kristal berraklığındaki sular ve beyaz kumlu plajları ile unutulmaz bir deneyim yaşayın.",
-        "en": "Discover Suluada! Experience unforgettable moments with Antalya's untouched natural beauty, crystal clear waters and white sandy beaches.",
-        "de": "",
-        "ru": "",
-        "pl": ""
+        "tr": "Kemer Residence misafirleri için hazırlanan Suluada & Adrasan tekne turu rehberi: tur programı, yüzme durakları ve rezervasyon önerileri.",
+        "en": "Suluada & Adrasan boat tour guide for Kemer Residence guests with daily schedule, swimming stops and booking tips.",
+        "de": "Bootstour-Guide Suluada & Adrasan für Gäste des Kemer Residence: Tagesablauf, Badestopps und Buchungstipps.",
+        "ru": "Гид по туру на Сулуада и Адрасан для гостей Kemer Residence: программа дня, стоянки для купания и советы по бронированию.",
+        "pl": "Przewodnik po rejsie Suluada & Adrasan dla gości Kemer Residence: plan dnia, miejsca kąpieli oraz wskazówki rezerwacyjne."
+      },
+      "seoKeywords": {
+        "tr": "suluada tekne turu, adrasan tekne turu, kemer günlük tur",
+        "en": "suluada boat tour, adrasan boat tour, kemer daily cruise",
+        "de": "suluada bootstour, adrasan bootstour, kemer ausflug",
+        "ru": "тур на сулуада, морская прогулка адрасан, кемер экскурсия",
+        "pl": "rejs suluada, rejs adrasan, wycieczka kemer"
       },
       "tags": [
         "suluada",
-        "antalya",
-        "doğa",
-        "tekne turu",
         "adrasan",
-        "akdeniz"
+        "tekne turu",
+        "boat tour",
+        "kemer",
+        "mediterranean"
       ],
-      "active": true,
-      "seoKeywords": {
-        "tr": "",
-        "en": "",
-        "de": "",
-        "ru": "",
-        "pl": ""
-      },
       "externalLink": "https://royalfuntour.com/tr/turlar/adrasan-tekne-turu-kemer-cikisli-suluada-uc-adalar",
+      "externalLinkLocalized": {
+        "tr": "https://royalfuntour.com/tr/turlar/adrasan-tekne-turu-kemer-cikisli-suluada-uc-adalar",
+        "en": "https://royalfuntour.com/en/turlar/adrasan-suluada-boat-tour-from-kemer-three-islands-included",
+        "de": "https://royalfuntour.com/de/turlar/adrasan-suluada-bootstour-ab-kemer-inklusive-drei-inseln",
+        "ru": "https://royalfuntour.com/ru/turlar/morskaya-ekskursiya-iz-kemera-suluada-adrasan-i-tri-ostrova",
+        "pl": "https://royalfuntour.com/pl/turlar/adrasan-suluada-rejs-z-kemer-tureckie-malediwy"
+      },
       "externalLinkTitle": {
-        "tr": "Roayl Fun Tour",
-        "en": "",
-        "de": "",
-        "ru": "",
-        "pl": ""
+        "tr": "Royal Fun Tour Rezervasyonu",
+        "en": "Royal Fun Tour Booking",
+        "de": "Royal Fun Tour Buchung",
+        "ru": "Бронирование Royal Fun Tour",
+        "pl": "Rezerwacja Royal Fun Tour"
+      },
+      "externalLinkButton": {
+        "tr": "Rezervasyon Yap",
+        "en": "Book Now",
+        "de": "Jetzt buchen",
+        "ru": "Забронировать",
+        "pl": "Zarezerwuj teraz"
       },
       "images": [
         {
-          "id": "1761662744577",
-          "url": "/uploads/logo-1761662744575.webp",
+          "id": "suluada-main",
+          "url": "/uploads/suluada-main.jpg",
           "alt": {
-            "tr": "",
-            "en": "",
-            "de": "",
-            "ru": "",
-            "pl": ""
+            "tr": "Suluada sahilinde demirlemiş tekneler ve turkuaz deniz",
+            "en": "Boats anchored off Suluada with turquoise Mediterranean water",
+            "de": "Vor Suluada ankernde Boote im türkisfarbenen Mittelmeer",
+            "ru": "Лодки у берегов Сулуады на бирюзовом Средиземном море",
+            "pl": "Łodzie zacumowane przy Suluadzie na turkusowym Morzu Śródziemnym"
           },
           "isMain": true
+        },
+        {
+          "id": "suluada-cove",
+          "url": "/uploads/suluada-cove.jpg",
+          "alt": {
+            "tr": "Suluada koyunda kireç taşı kayalıkları ve tekneler",
+            "en": "Limestone cliffs and tour boats in a Suluada cove",
+            "de": "Kalksteinklippen und Ausflugsboote in einer Bucht von Suluada",
+            "ru": "Известняковые скалы и прогулочные лодки в бухте Сулуады",
+            "pl": "Wapienne klify i łodzie wycieczkowe w zatoce Suluady"
+          }
+        },
+        {
+          "id": "suluada-cliff",
+          "url": "/uploads/suluada-cliff.jpg",
+          "alt": {
+            "tr": "Adrasan kıyısında turkuaz deniz ve kızıl kayalıklar",
+            "en": "Turquoise sea and red cliffs along the Adrasan coast",
+            "de": "Türkisfarbenes Meer und rote Klippen an der Küste von Adrasan",
+            "ru": "Бирюзовое море и красные скалы у побережья Адрасан",
+            "pl": "Turkusowe morze i czerwone klify u wybrzeża Adrasan"
+          }
+        },
+        {
+          "id": "suluada-lagoon",
+          "url": "/uploads/suluada-lagoon.jpg",
+          "alt": {
+            "tr": "Suluada'da iskeleden denize uzanan turkuaz lagün",
+            "en": "Turquoise lagoon stretching from the boat's ladder on Suluada",
+            "de": "Türkisfarbene Lagune am Ausstieg einer Yacht auf Suluada",
+            "ru": "Бирюзовая лагуна у трапа лодки на Сулуада",
+            "pl": "Turkusowa laguna przy trapie łodzi na Suluadzie"
+          }
         }
       ],
-      "externalLinkButton": {
-        "tr": "kemer den adrasan tekne turu",
-        "en": "",
-        "de": "",
-        "ru": "",
-        "pl": ""
-      }
-    },
-    {
-      "id": "1",
-      "slug": {
-        "tr": "kapadokya-balon-turu",
-        "en": "cappadocia-balloon-tour",
-        "de": "kappadokien-ballonfahrt",
-        "ru": "каппадокия-воздушный-шар",
-        "pl": "kapadocja-lot-balonem"
-      },
-      "title": {
-        "tr": "Kapadokya Balon Turu Deneyimi",
-        "en": "Cappadocia Balloon Tour Experience",
-        "de": "Kappadokien Ballonfahrt Erlebnis",
-        "ru": "Опыт полета на воздушном шаре в Каппадокии",
-        "pl": "Doświadczenie lotu balonem w Kapadocji"
-      },
-      "excerpt": {
-        "tr": "Kapadokya balon turu ile unutulmaz bir deneyim yaşayın",
-        "en": "Experience an unforgettable balloon tour in Cappadocia",
-        "de": "Erleben Sie eine unvergessliche Ballonfahrt in Kappadokien",
-        "ru": "Испытайте незабываемый тур на воздушном шаре в Каппадокии",
-        "pl": "Przeżyj niezapomnianą wycieczkę balonem w Kapadocji"
-      },
-      "content": {
-        "tr": "Kapadokya'nın büyüleyici manzarasını havadan keşfetmek için balon turuna katılın. Peri bacalarının arasında süzülürken, doğanın bu eşsiz güzelliğine tanık olacaksınız.",
-        "en": "Join a balloon tour to discover Cappadocia's enchanting landscape from above. Glide among the fairy chimneys and witness nature's unique beauty.",
-        "de": "Nehmen Sie an einer Ballonfahrt teil, um Kappadokiens bezaubernde Landschaft von oben zu entdecken. Gleiten Sie zwischen den Feenkaminen und erleben Sie diese einzigartige Naturschönheit.",
-        "ru": "Присоединяйтесь к туру на воздушном шаре, чтобы открыть для себя очаровательный пейзаж Каппадокии сверху. Скользите среди каминов фей и станьте свидетелем уникальной красоты природы.",
-        "pl": "Dołącz do lotu balonem, aby odkryć urokliwy krajobraz Kapadocji z góry. Szybuj między kominami wróżek i bądź świadkiem wyjątkowego piękna natury."
-      },
-      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070",
-      "author": "Kemer Residence",
-      "category": "Turlar",
-      "readTime": "5 dk",
-      "publishedAt": "2024-10-20T10:00:00Z",
       "active": true
     }
   ]
