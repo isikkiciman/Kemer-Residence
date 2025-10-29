@@ -1,0 +1,92 @@
+// Prisma schema for running migrations against PostgreSQL (production)
+// Mirrors prisma/schema.prisma but switches the datasource provider.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Room {
+  id          String   @id @default(uuid())
+  name        Json     // {"tr": "Deluxe Oda", "en": "Deluxe Room", "de": "Deluxe Zimmer", "ru": "Делюкс номер", "pl": "Pokój Deluxe"}
+  description Json
+  image       String
+  price       Float
+  capacity    String
+  size        String
+  amenities   Json     // Array of amenities
+  order       Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BlogPost {
+  id                 String   @id @default(uuid())
+  title              Json
+  excerpt            Json
+  content            Json
+  image              String
+  author             String
+  category           String
+  readTime           String
+  slug               Json     // {"tr": "ornek-yazi", "en": "sample-post", ...}
+  seoTitle           Json?    // SEO Title (5 dil)
+  seoDescription     Json?    // SEO Description (5 dil)
+  seoKeywords        Json?    // SEO Keywords (5 dil)
+  externalLink       String?  // Dış link URL
+  externalLinkTitle  Json?    // Dış link başlığı (5 dil)
+  externalLinkButton Json?    // Dış link buton metni (5 dil)
+  tags               Json?    // Etiket listesi
+  images             Json?    // [{id, url, alt:{tr,en,...}, isMain}]
+  active             Boolean  @default(true)
+  publishedAt        DateTime @default(now())
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Gallery {
+  id        String   @id @default(uuid())
+  src       String
+  alt       Json
+  category  String
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSettings {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Translation {
+  id        String   @id @default(uuid())
+  key       String
+  locale    String
+  value     String
+  category  String   @default("general")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([key, locale])
+  @@index([category])
+}
