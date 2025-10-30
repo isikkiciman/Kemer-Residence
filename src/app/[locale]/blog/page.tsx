@@ -2,16 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { Calendar, User, Clock, ArrowRight } from "lucide-react";
-import {getTranslations} from 'next-intl/server';
-import blogData from '@/data/blog-posts.json';
-
-interface MultiLangText {
-  tr: string;
-  en: string;
-  de: string;
-  ru: string;
-  pl: string;
-}
+import { getTranslations } from "next-intl/server";
+import { getAllBlogPosts } from "@/lib/blogData";
+import type { MultilingualText } from "@/lib/blogData";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -47,11 +40,42 @@ export const metadata: Metadata = {
   },
 };
 
-function getBlogPosts() {
-  console.log('� Loading blog posts from JSON...');
-  return blogData.posts.sort((a, b) => 
-    new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-  );
+function getLocalizedValue(
+  value: MultilingualText | Partial<MultilingualText> | undefined,
+  locale: string,
+  fallbackLocale = "tr"
+): string {
+  if (!value) {
+    return "";
+  }
+
+  const localized = (value as Record<string, string>)[locale];
+  if (localized && localized.trim()) {
+    return localized;
+  }
+
+  const fallback = (value as Record<string, string>)[fallbackLocale];
+  if (fallback && fallback.trim()) {
+    return fallback;
+  }
+
+  const anyValue = Object.values(value).find((entry) => entry?.trim());
+  return anyValue ?? "";
+}
+
+function formatReadTime(readTime: string | undefined, suffix: string): string {
+  if (!readTime) {
+    return suffix;
+  }
+
+  const normalized = readTime.toLowerCase();
+  const normalizedSuffix = suffix.toLowerCase();
+
+  if (normalized.includes(normalizedSuffix)) {
+    return readTime;
+  }
+
+  return `${readTime} ${suffix}`.trim();
 }
 
 export default async function BlogPage({
@@ -60,13 +84,15 @@ export default async function BlogPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const blogPosts = getBlogPosts();
-  console.log('📝 Blog posts count:', blogPosts.length);
-  console.log('📝 Blog posts:', blogPosts);
-  const t = await getTranslations('blog');
-  
-  // Force re-render için blogPosts'u tekrar kontrol et
-  const safeBlogPosts = Array.isArray(blogPosts) ? blogPosts : [];
+  const t = await getTranslations("blog");
+
+  const blogPosts = (await getAllBlogPosts())
+    .filter((post) => post.active !== false)
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() -
+        new Date(a.publishedAt).getTime()
+    );
   
   return (
     <div className="min-h-screen">
@@ -91,70 +117,92 @@ export default async function BlogPage({
       <section className="section-padding">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {safeBlogPosts.map((post) => {
-                const title = (post.title as unknown as MultiLangText)[locale as keyof MultiLangText] || (post.title as unknown as MultiLangText).tr;
-                const excerpt = (post.excerpt as unknown as MultiLangText)[locale as keyof MultiLangText] || (post.excerpt as unknown as MultiLangText).tr;
-                const slug = (post.slug as unknown as MultiLangText)[locale as keyof MultiLangText] || (post.slug as unknown as MultiLangText).tr;
-                
-                return (
-                  <article
-                    key={post.id}
-                    className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow"
-                  >
-                    <div className="relative h-56">
-                      <Image
-                        src={post.image}
-                        alt={title}
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-[--primary] text-white px-3 py-1 rounded text-sm">
-                          {post.category}
-                        </span>
+            {blogPosts.map((post) => {
+              const title = getLocalizedValue(post.title, locale);
+              const excerpt = getLocalizedValue(post.excerpt, locale);
+              const slug =
+                getLocalizedValue(post.slug, locale) ||
+                post.slug?.tr ||
+                post.slug?.en ||
+                post.id;
+              const mainImage =
+                post.images?.find((image) => image.isMain)?.url || post.image;
+              const mainAlt =
+                post.images?.find((image) => image.isMain)?.alt?.[locale] || title;
+              const publishedDate = new Date(post.publishedAt).toLocaleDateString(
+                locale,
+                {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                }
+              );
+              const readTime = formatReadTime(post.readTime, t("readTime"));
+
+              return (
+                <article
+                  key={post.id}
+                  className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+                >
+                  <div className="relative h-56">
+                    <Image
+                      src={mainImage}
+                      alt={mainAlt || title}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 90vw"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-[--primary] text-white px-3 py-1 rounded text-sm">
+                        {post.category}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                      <div className="flex items-center gap-1">
+                        <Calendar size={14} />
+                        <span>{publishedDate}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock size={14} />
+                        <span>{readTime}</span>
                       </div>
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
-                        <div className="flex items-center gap-1">
-                          <Calendar size={14} />
-                          <span>{new Date(post.publishedAt).toLocaleDateString(locale)}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Clock size={14} />
-                          <span>{post.readTime} {t('readTime')}</span>
-                        </div>
+
+                    <h3 className="text-xl font-serif font-semibold mb-2 hover:text-[--primary] transition-colors">
+                      <Link
+                        href={{
+                          pathname: "/blog/[slug]",
+                          params: { slug },
+                        }}
+                      >
+                        {title}
+                      </Link>
+                    </h3>
+
+                    <p className="text-gray-600 mb-4">{excerpt}</p>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <User size={14} />
+                        <span>{post.author}</span>
                       </div>
-                      
-                      <h3 className="text-xl font-serif font-semibold mb-2 hover:text-[--primary] transition-colors">
-                        <Link href={{
-                          pathname: '/blog/[slug]',
-                          params: { slug }
-                        }}>{title}</Link>
-                      </h3>
-                      
-                      <p className="text-gray-600 mb-4">{excerpt}</p>
-                      
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                          <User size={14} />
-                          <span>{post.author}</span>
-                        </div>
-                        <Link
-                          href={{
-                            pathname: '/blog/[slug]',
-                            params: { slug }
-                          }}
-                          className="text-[--primary] font-medium hover:underline flex items-center gap-1"
-                        >
-                          {t('readMore')}
-                          <ArrowRight size={16} />
-                        </Link>
-                      </div>
+                      <Link
+                        href={{
+                          pathname: "/blog/[slug]",
+                          params: { slug },
+                        }}
+                        className="text-[--primary] font-medium hover:underline flex items-center gap-1"
+                      >
+                        {t("readMore")}
+                        <ArrowRight size={16} />
+                      </Link>
                     </div>
-                  </article>
-                );
-              })}
+                  </div>
+                </article>
+              );
+            })}
             </div>
         </div>
       </section>

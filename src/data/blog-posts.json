@@ -30,7 +30,7 @@
         "ru": "Морская прогулка на Сулуада, отправляющаяся из бухты Адрасан, — один из самых любимых дневных туров гостей из Кемера. Вас ждут бирюзовые бухты, известняковые скалы и уединённые пляжи, сохранившие природную красоту.\n\nОсновные остановки маршрута:\n• Две купальные стоянки у Сулуады с кристально чистыми лагунами, которые называют \"турецкими Мальдивами\"\n• Маршрут по Трём островам с остановками в Бухте пиратов, Американской бухте и Генуэзской бухте\n• Отправление из порта Адрасан и возвращение в Кемер к закату\n\nРасписание дня:\n• 09:30 выезд из отелей Кемера и трансфер в Адрасан (прибытие 10:30)\n• 11:00 – 15:30 купальные остановки на Сулуада и Трёх островах, обед на борту\n• 16:30 отправление из Адрасана, 18:00 возвращение в отель Кемера\n\nЧто взять с собой:\n• Маску для сноркелинга и пляжную обувь\n• Солнцезащитный крем с высоким SPF и головной убор\n• Полотенце и сменную одежду\n• Камеру или водонепроницаемый чехол для телефона\n\nСтоимость тура включает услуги гида, обед и трансферы из отеля. Аренда оборудования, напитки и профессиональная фотосъёмка оплачиваются дополнительно.\n\nБронируйте сейчас: https://royalfuntour.com/ru/turlar/morskaya-ekskursiya-iz-kemera-suluada-adrasan-i-tri-ostrova",
         "pl": "Rejs na Suluadę, rozpoczynający się w zatoce Adrasan, to jeden z ulubionych całodziennych wypadów naszych gości z Kemeru. Czekają na Ciebie turkusowe zatoczki, wapienne klify i dziewicze plaże.\n\nNajciekawsze punkty trasy:\n• Dwa postoje kąpielowe przy Suluadzie z krystalicznymi lagunami zwanymi \"tureckimi Malediwami\"\n• Pętla Trzech Wysp z przerwami w Zatoce Piratów, Zatoce Amerykańskiej i Zatoce Genueńskiej\n• Wypłynięcie z portu w Adrasan i powrót do Kemeru o zachodzie słońca\n\nPlan dnia:\n• 09:30 odbiór z hoteli w Kemerze i transfer do Adrasan (przyjazd 10:30)\n• 11:00 – 15:30 postoje na kąpiele wokół Suluady i Trzech Wysp oraz obiad na pokładzie\n• 16:30 wypłynięcie z Adrasan, 18:00 powrót do hotelu w Kemerze\n\nCo spakować:\n• Maskę do nurkowania i buty do wody\n• Krem z filtrem SPF i kapelusz\n• Ręcznik oraz zapasowe ubrania\n• Aparat fotograficzny lub wodoodporne etui na telefon\n\nW cenę rejsu wliczone są usługi przewodnika, obiad i transfery hotelowe. Wypożyczenie sprzętu, napoje oraz profesjonalne zdjęcia dostępne są za dodatkową opłatą.\n\nZarezerwuj teraz: https://royalfuntour.com/pl/turlar/adrasan-suluada-rejs-z-kemer-tureckie-malediwy"
       },
-      "image": "/uploads/suluada-main.jpg",
+  "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
       "author": "Kemer Residence",
       "category": "Turlar",
       "readTime": "7 dk",
@@ -89,7 +89,7 @@
       "images": [
         {
           "id": "suluada-main",
-          "url": "/uploads/suluada-main.jpg",
+          "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
           "alt": {
             "tr": "Suluada sahilinde demirlemiş tekneler ve turkuaz deniz",
             "en": "Boats anchored off Suluada with turquoise Mediterranean water",
@@ -101,7 +101,7 @@
         },
         {
           "id": "suluada-cove",
-          "url": "/uploads/suluada-cove.jpg",
+          "url": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80",
           "alt": {
             "tr": "Suluada koyunda kireç taşı kayalıkları ve tekneler",
             "en": "Limestone cliffs and tour boats in a Suluada cove",
@@ -112,7 +112,7 @@
         },
         {
           "id": "suluada-cliff",
-          "url": "/uploads/suluada-cliff.jpg",
+          "url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80",
           "alt": {
             "tr": "Adrasan kıyısında turkuaz deniz ve kızıl kayalıklar",
             "en": "Turquoise sea and red cliffs along the Adrasan coast",
@@ -123,7 +123,7 @@
         },
         {
           "id": "suluada-lagoon",
-          "url": "/uploads/suluada-lagoon.jpg",
+          "url": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80",
           "alt": {
             "tr": "Suluada'da iskeleden denize uzanan turkuaz lagün",
             "en": "Turquoise lagoon stretching from the boat's ladder on Suluada",

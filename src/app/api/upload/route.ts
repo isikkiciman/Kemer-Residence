@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 import { existsSync } from 'fs';
+import { put } from '@vercel/blob';
+import { randomUUID } from 'crypto';
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,22 +38,37 @@ export async function POST(request: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Generate unique filename
-    const timestamp = Date.now();
-    const extension = file.name.split('.').pop();
-    const filename = `logo-${timestamp}.${extension}`;
-    
-    // Create uploads directory if it doesn't exist
+    const extension = file.name.split('.').pop()?.toLowerCase() || 'bin';
+    const filename = `blog-${Date.now()}-${randomUUID()}.${extension}`;
+    const token =
+      process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_WRITE_ONLY_TOKEN;
+
+    if (token) {
+      const blob = await put(`uploads/${filename}`, buffer, {
+        access: 'public',
+        contentType: file.type,
+        token,
+      });
+
+      return NextResponse.json({
+        success: true,
+        url: blob.url,
+        filename,
+        size: file.size,
+        type: file.type,
+        storage: 'vercel-blob',
+      });
+    }
+
+    // Local fallback for development when no blob token is set
     const uploadsDir = join(process.cwd(), 'public', 'uploads');
     if (!existsSync(uploadsDir)) {
       await mkdir(uploadsDir, { recursive: true });
     }
 
-    // Save file
     const filepath = join(uploadsDir, filename);
     await writeFile(filepath, buffer);
 
-    // Return public URL
     const publicUrl = `/uploads/${filename}`;
 
     return NextResponse.json({
@@ -60,6 +77,7 @@ export async function POST(request: NextRequest) {
       filename,
       size: file.size,
       type: file.type,
+      storage: 'local',
     });
   } catch (error) {
     console.error('Error uploading file:', error);

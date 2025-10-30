@@ -58,6 +58,7 @@ export default async function BlogDetailPage({ params }: Props) {
     post.images?.find((image) => image.isMain)?.url || post.image;
   const mainImageAlt =
     post.images?.find((image) => image.isMain)?.alt?.[locale] || title;
+  const galleryImages = (post.images ?? []).filter((image) => !image.isMain);
   
   // Tarihi formatla
   const publishDate = new Date(post.publishedAt).toLocaleDateString('tr-TR', {
@@ -76,6 +77,7 @@ export default async function BlogDetailPage({ params }: Props) {
           alt={mainImageAlt || title}
           fill
           className="object-cover"
+          sizes="100vw"
         />
         <div className="container-custom relative z-20 text-center text-white">
           <div className="mb-4">
@@ -149,6 +151,37 @@ export default async function BlogDetailPage({ params }: Props) {
                 })}
               </div>
             </div>
+
+            {galleryImages.length > 0 && (
+              <div className="mt-12">
+                <h3 className="text-2xl font-serif font-semibold text-gray-900 mb-6">
+                  Fotoğraf Galerisi
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {galleryImages.map((image) => {
+                    const altText =
+                      image.alt?.[locale] ||
+                      Object.values(image.alt ?? {}).find((value) => value?.trim()) ||
+                      title;
+
+                    return (
+                      <div
+                        key={image.id}
+                        className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-md"
+                      >
+                        <Image
+                          src={image.url}
+                          alt={altText}
+                          fill
+                          className="object-cover"
+                          sizes="(min-width: 1024px) 45vw, 90vw"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {externalLink && (
               <div className="mt-12 p-6 border border-gray-200 rounded-xl bg-gray-50">

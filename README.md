@@ -120,6 +120,19 @@ kemer-residence/
 
 Görseller Unsplash'ten alınmıştır. Kendi görsellerinizi kullanmak için `public/images/` klasörüne ekleyin ve bileşenlerdeki URL'leri güncelleyin.
 
+### Admin panelinden görsel yükleme
+
+Prod ortamında yüklenen dosyaların kalıcı olması için [Vercel Blob](https://vercel.com/docs/storage/vercel-blob) kullanılır. Geliştirme ortamında token tanımlı değilse dosyalar yerel `public/uploads` klasörüne kaydedilir.
+
+1. `@vercel/blob` için bir **Read/Write Token** oluşturun.
+2. `.env.local` (veya Vercel dashboard) içine şu değişkeni ekleyin:
+
+  ```bash
+  BLOB_READ_WRITE_TOKEN="<token>"
+  ```
+
+3. Admin panelinden yüklenen görseller otomatik olarak Vercel Blob’a yüklenecek ve URL’ler veritabanına kaydedilecektir.
+
 ## 🚀 Production
 
 Production için build almak:
