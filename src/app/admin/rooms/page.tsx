@@ -10,6 +10,7 @@ interface Room {
   name: { tr: string; en: string; de: string; ru: string; pl: string };
   description: { tr: string; en: string; de: string; ru: string; pl: string };
   image: string;
+  images: string[];
   price: number;
   capacity: string;
   size: string;
@@ -75,15 +76,60 @@ function normalizeAmenities(value: unknown): Record<string, string[]> {
   }, {});
 }
 
+function normalizeImages(value: unknown, fallback?: string): string[] {
+  const rawList: string[] = [];
+
+  const addImage = (candidate: unknown) => {
+    if (typeof candidate === "string" && candidate.trim()) {
+      rawList.push(candidate.trim());
+      return;
+    }
+
+    if (candidate && typeof candidate === "object") {
+      const record = candidate as Record<string, unknown>;
+      if (typeof record.url === "string" && record.url.trim()) {
+        rawList.push(record.url.trim());
+      }
+    }
+  };
+
+  if (Array.isArray(value)) {
+    value.forEach((item) => addImage(item));
+  } else if (value && typeof value === "object") {
+    const record = value as Record<string, unknown>;
+    const possible = record.list ?? record.images ?? record.items;
+    if (Array.isArray(possible)) {
+      possible.forEach((item) => addImage(item));
+    } else {
+      Object.values(record).forEach((item) => addImage(item));
+    }
+  } else if (typeof value === "string") {
+    addImage(value);
+  }
+
+  if (fallback) {
+    addImage(fallback);
+  }
+
+  return Array.from(new Set(rawList)).slice(0, 10);
+}
+
 function mapRoomResponse(room: unknown): Room {
   const record =
     room && typeof room === "object" ? (room as Record<string, unknown>) : {};
+
+  const images = normalizeImages(
+    record.images,
+    typeof record.image === "string" ? record.image : undefined
+  );
+  const coverImage = images[0] ?? (typeof record.image === "string" ? record.image : "");
 
   return {
     id: String(record.id ?? ""),
     name: normalizeLocalized(record.name),
     description: normalizeLocalized(record.description),
-    image: typeof record.image === "string" ? record.image : "",
+    image: coverImage,
+    images,
     price:
       typeof record.price === "number"
         ? record.price
@@ -238,8 +284,8 @@ export default function RoomsPage() {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={room.image}
+            <img
+              src={room.images[0] ?? room.image}
                         alt={room.name.tr}
                         className="h-10 w-16 object-cover rounded mr-3"
                       />

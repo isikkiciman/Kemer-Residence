@@ -25,6 +25,7 @@ model Room {
   name        Json     // {"tr": "Deluxe Oda", "en": "Deluxe Room", "de": "Deluxe Zimmer", "ru": "Делюкс номер", "pl": "Pokój Deluxe"}
   description Json
   image       String
+  images      Json?
   price       Float
   capacity    String
   size        String

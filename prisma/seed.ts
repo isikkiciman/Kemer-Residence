@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Prisma } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -38,6 +38,11 @@ async function main() {
         pl: 'Przestronny i wygodny pokój deluxe'
       },
       image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070',
+      images: [
+        'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070',
+        'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80',
+        'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1600&q=80'
+      ] as Prisma.JsonArray,
       price: 150,
       capacity: '2 Kişi',
       size: '35 m²',

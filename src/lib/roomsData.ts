@@ -12,6 +12,7 @@ export interface Room {
   name: LocalizedText;
   description: LocalizedText;
   image: string;
+  images: string[];
   price: number;
   capacity: string;
   size: string;
@@ -58,12 +59,57 @@ function parseLocalizedAmenities(
   );
 }
 
+function parseImageList(
+  value: Prisma.JsonValue | null | undefined,
+  fallback?: string
+): string[] {
+  const list: string[] = [];
+
+  const add = (candidate: unknown) => {
+    if (typeof candidate === "string" && candidate.trim()) {
+      list.push(candidate.trim());
+      return;
+    }
+
+    if (candidate && typeof candidate === "object" && !Array.isArray(candidate)) {
+      const record = candidate as Record<string, unknown>;
+      if (typeof record.url === "string" && record.url.trim()) {
+        list.push(record.url.trim());
+      }
+    }
+  };
+
+  if (Array.isArray(value)) {
+    value.forEach((item) => add(item));
+  } else if (value && typeof value === "object") {
+    const record = value as Record<string, unknown>;
+    if (Array.isArray(record.list)) {
+      record.list.forEach((item) => add(item));
+    } else if (Array.isArray(record.images)) {
+      record.images.forEach((item) => add(item));
+    } else {
+      Object.values(record).forEach((item) => add(item));
+    }
+  }
+
+  if (fallback) {
+    add(fallback);
+  }
+
+  return Array.from(new Set(list)).slice(0, 10);
+}
+
 function mapRoom(room: PrismaRoom): Room {
+  const rawImages = (room as { images?: Prisma.JsonValue | null }).images ?? null;
+  const images = parseImageList(rawImages, room.image);
+  const coverImage = images[0] ?? room.image;
+
   return {
     id: room.id,
     name: parseLocalizedText(room.name),
     description: parseLocalizedText(room.description),
-    image: room.image,
+    image: coverImage,
+    images,
     price: room.price,
     capacity: room.capacity,
     size: room.size,

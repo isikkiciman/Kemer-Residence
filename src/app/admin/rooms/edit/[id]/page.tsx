@@ -23,6 +23,7 @@ type RoomResponse = {
   name?: Record<string, unknown>;
   description?: Record<string, unknown>;
   image?: string;
+  images?: unknown;
   price?: number | string;
   capacity?: string;
   size?: string;
@@ -77,6 +78,43 @@ function extractAmenities(value: RoomResponse["amenities"]): string[] {
   return [];
 }
 
+function extractImages(value: RoomResponse["images"], fallback?: string): string[] {
+  const list: string[] = [];
+
+  const add = (candidate: unknown) => {
+    if (typeof candidate === "string" && candidate.trim()) {
+      list.push(candidate.trim());
+      return;
+    }
+
+    if (candidate && typeof candidate === "object" && !Array.isArray(candidate)) {
+      const record = candidate as Record<string, unknown>;
+      if (typeof record.url === "string" && record.url.trim()) {
+        list.push(record.url.trim());
+      }
+    }
+  };
+
+  if (Array.isArray(value)) {
+    value.forEach((item) => add(item));
+  } else if (value && typeof value === "object") {
+    const record = value as Record<string, unknown>;
+    if (Array.isArray(record.list)) {
+      record.list.forEach((item) => add(item));
+    } else if (Array.isArray(record.images)) {
+      record.images.forEach((item) => add(item));
+    } else {
+      Object.values(record).forEach((item) => add(item));
+    }
+  }
+
+  if (fallback) {
+    add(fallback);
+  }
+
+  return Array.from(new Set(list)).slice(0, 10);
+}
+
 export default function EditRoomPage() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
@@ -85,7 +123,6 @@ export default function EditRoomPage() {
   const [formData, setFormData] = useState({
     name: createEmptyLocalized(),
     description: createEmptyLocalized(),
-    image: "",
     price: "",
     capacity: "",
     size: "",
@@ -93,6 +130,9 @@ export default function EditRoomPage() {
     order: "0",
     active: true,
   });
+  const [coverImage, setCoverImage] = useState("");
+  const [galleryImages, setGalleryImages] = useState<string[]>([]);
+  const [galleryInput, setGalleryInput] = useState("");
   const [amenityInput, setAmenityInput] = useState("");
 
   const roomId = useMemo(() => params?.id ?? "", [params?.id]);
@@ -119,10 +159,11 @@ export default function EditRoomPage() {
             ? String(data.order)
             : data.order ?? "0";
 
+        const images = extractImages(data.images, data.image);
+
         setFormData({
           name: normalizeLocalized(data.name),
           description: normalizeLocalized(data.description),
-          image: data.image ?? "",
           price: priceValue,
           capacity: data.capacity ?? "",
           size: data.size ?? "",
@@ -130,6 +171,8 @@ export default function EditRoomPage() {
           order: orderValue,
           active: data.active !== false,
         });
+        setCoverImage(images[0] ?? "");
+        setGalleryImages(images.slice(1));
       } catch (error) {
         console.error("Error fetching room:", error);
         toast.error("Oda bilgileri yüklenemedi");
@@ -158,10 +201,41 @@ export default function EditRoomPage() {
     }));
   };
 
+  const addGalleryImage = () => {
+    const value = galleryInput.trim();
+    if (!value) {
+      return;
+    }
+
+    const totalCount = (coverImage.trim() ? 1 : 0) + galleryImages.length;
+    if (totalCount >= 10) {
+      toast.error("En fazla 10 görsel ekleyebilirsiniz.");
+      return;
+    }
+
+    if (value === coverImage.trim() || galleryImages.includes(value)) {
+      toast.error("Aynı görseli tekrar ekleyemezsiniz.");
+      setGalleryInput("");
+      return;
+    }
+
+    setGalleryImages((prev) => [...prev, value]);
+    setGalleryInput("");
+  };
+
+  const removeGalleryImage = (index: number) => {
+    setGalleryImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!roomId) {
       toast.error("Geçersiz oda bilgisi");
+      return;
+    }
+
+    if (!coverImage.trim()) {
+      toast.error("Kapak görseli zorunludur.");
       return;
     }
 
@@ -176,11 +250,30 @@ export default function EditRoomPage() {
         {} as Record<string, string[]>
       );
 
+      const imageList = [coverImage, ...galleryImages]
+        .map((url) => url.trim())
+        .filter((url) => Boolean(url))
+        .reduce<string[]>((acc, url) => {
+          if (!acc.includes(url)) {
+            acc.push(url);
+          }
+          return acc;
+        }, [])
+        .slice(0, 10);
+
+      if (imageList.length === 0) {
+        toast.error("En az bir görsel ekleyin.");
+        setSubmitting(false);
+        return;
+      }
+
       const response = await fetch(`/api/admin/rooms/${roomId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
+          image: imageList[0],
+          images: imageList,
           amenities: amenitiesPayload,
         }),
       });
@@ -279,20 +372,21 @@ export default function EditRoomPage() {
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-lg font-semibold mb-4">Temel Bilgiler</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
+            <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Resim URL
+                Kapak Görseli URL
               </label>
               <input
                 type="url"
                 required
-                value={formData.image}
-                onChange={(e) =>
-                  setFormData((prev) => ({ ...prev, image: e.target.value }))
-                }
+                value={coverImage}
+                onChange={(e) => setCoverImage(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="https://example.com/image.jpg"
+                placeholder="https://example.com/cover.jpg"
               />
+              <p className="text-xs text-gray-500 mt-1">
+                Bu görsel odanın listelemelerde görünen ilk görselidir.
+              </p>
             </div>
 
             <div>
@@ -373,6 +467,57 @@ export default function EditRoomPage() {
                   Aktif
                 </span>
               </label>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Galeri Görselleri (opsiyonel)
+              </label>
+              <div className="flex flex-col md:flex-row gap-2">
+                <input
+                  type="url"
+                  value={galleryInput}
+                  onChange={(e) => setGalleryInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      addGalleryImage();
+                    }
+                  }}
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="https://example.com/gallery.jpg"
+                />
+                <button
+                  type="button"
+                  onClick={addGalleryImage}
+                  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                >
+                  Görsel Ekle
+                </button>
+              </div>
+              <p className="text-xs text-gray-500 mt-1">
+                Maksimum 10 görsel ekleyebilirsiniz. Kapak görseli dahil edilmiştir.
+              </p>
+
+              {galleryImages.length > 0 && (
+                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {galleryImages.map((image, index) => (
+                    <div
+                      key={`${image}-${index}`}
+                      className="flex items-center justify-between gap-3 border border-gray-200 rounded px-3 py-2"
+                    >
+                      <span className="text-sm break-all flex-1">{image}</span>
+                      <button
+                        type="button"
+                        onClick={() => removeGalleryImage(index)}
+                        className="text-red-500 hover:text-red-700 text-sm"
+                      >
+                        Kaldır
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

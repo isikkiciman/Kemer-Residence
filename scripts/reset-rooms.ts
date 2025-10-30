@@ -19,6 +19,12 @@ const sampleRoom = {
     pl: 'Ciesz się luksusowym pobytem w przestronnym apartamencie z widokiem na morze, prywatnym balkonem, łóżkiem king-size i prysznicem spa.',
   },
   image: 'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80',
+  images: [
+    'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80',
+    'https://images.unsplash.com/photo-1551776235-dde6d4829808?auto=format&fit=crop&w=1600&q=80',
+    'https://images.unsplash.com/photo-1501117716987-c8e1ecb2105c?auto=format&fit=crop&w=1600&q=80',
+    'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1600&q=80',
+  ],
   price: 280,
   capacity: '2 Kişi',
   size: '45 m²',
