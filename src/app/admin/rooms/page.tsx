@@ -13,9 +13,91 @@ interface Room {
   price: number;
   capacity: string;
   size: string;
-  amenities: string[];
+  amenities: Record<string, string[]>;
   order: number;
   active: boolean;
+}
+
+const LANGUAGES = ["tr", "en", "de", "ru", "pl"] as const;
+
+type LocalizedContent = Record<(typeof LANGUAGES)[number], string>;
+
+function createEmptyLocalized(): LocalizedContent {
+  return LANGUAGES.reduce<LocalizedContent>((acc, lang) => {
+    acc[lang] = "";
+    return acc;
+  }, {} as LocalizedContent);
+}
+
+function normalizeLocalized(value: unknown): LocalizedContent {
+  const base = createEmptyLocalized();
+
+  if (value && typeof value === "object" && !Array.isArray(value)) {
+    for (const lang of LANGUAGES) {
+      const text = (value as Record<string, unknown>)[lang];
+      if (typeof text === "string") {
+        base[lang] = text;
+      }
+    }
+  }
+
+  return base;
+}
+
+function normalizeAmenities(value: unknown): Record<string, string[]> {
+  if (!value) {
+    return LANGUAGES.reduce<Record<string, string[]>>((acc, lang) => {
+      acc[lang] = [];
+      return acc;
+    }, {});
+  }
+
+  if (Array.isArray(value)) {
+    return LANGUAGES.reduce<Record<string, string[]>>((acc, lang) => {
+      acc[lang] = value.filter((item): item is string => typeof item === "string");
+      return acc;
+    }, {});
+  }
+
+  if (typeof value === "object") {
+    return LANGUAGES.reduce<Record<string, string[]>>((acc, lang) => {
+      const list = (value as Record<string, unknown>)[lang];
+      acc[lang] = Array.isArray(list)
+        ? list.filter((item): item is string => typeof item === "string")
+        : [];
+      return acc;
+    }, {});
+  }
+
+  return LANGUAGES.reduce<Record<string, string[]>>((acc, lang) => {
+    acc[lang] = [];
+    return acc;
+  }, {});
+}
+
+function mapRoomResponse(room: unknown): Room {
+  const record =
+    room && typeof room === "object" ? (room as Record<string, unknown>) : {};
+
+  return {
+    id: String(record.id ?? ""),
+    name: normalizeLocalized(record.name),
+    description: normalizeLocalized(record.description),
+    image: typeof record.image === "string" ? record.image : "",
+    price:
+      typeof record.price === "number"
+        ? record.price
+        : Number.parseFloat(String(record.price ?? 0)) || 0,
+    capacity:
+      typeof record.capacity === "string"
+        ? record.capacity
+        : String(record.capacity ?? ""),
+    size:
+      typeof record.size === "string" ? record.size : String(record.size ?? ""),
+    amenities: normalizeAmenities(record.amenities),
+    order: Number.parseInt(String(record.order ?? 0), 10) || 0,
+    active: record.active !== false,
+  };
 }
 
 export default function RoomsPage() {
@@ -30,7 +112,11 @@ export default function RoomsPage() {
     try {
       const response = await fetch("/api/admin/rooms");
       const data = await response.json();
-      setRooms(data);
+      setRooms(
+        Array.isArray(data)
+          ? data.map((item: unknown) => mapRoomResponse(item))
+          : []
+      );
     } catch (error) {
       console.error("Error fetching rooms:", error);
       toast.error("Odalar yüklenemedi");

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState, FormEvent } from "react";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import toast from "react-hot-toast";
@@ -12,14 +12,79 @@ const languages = [
   { code: "de", name: "Deutsch" },
   { code: "ru", name: "Русский" },
   { code: "pl", name: "Polski" },
-];
+] as const;
 
-export default function CreateRoomPage() {
+type LanguageCode = (typeof languages)[number]["code"];
+
+type LocalizedContent = Record<LanguageCode, string>;
+
+type RoomResponse = {
+  id: string;
+  name?: Record<string, unknown>;
+  description?: Record<string, unknown>;
+  image?: string;
+  price?: number | string;
+  capacity?: string;
+  size?: string;
+  amenities?: Record<string, unknown> | string[];
+  order?: number | string;
+  active?: boolean;
+};
+
+function createEmptyLocalized(): LocalizedContent {
+  return languages.reduce<LocalizedContent>((acc, lang) => {
+    acc[lang.code] = "";
+    return acc;
+  }, {} as LocalizedContent);
+}
+
+function normalizeLocalized(value: unknown): LocalizedContent {
+  const base = createEmptyLocalized();
+
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return base;
+  }
+
+  for (const lang of languages) {
+    const text = (value as Record<string, unknown>)[lang.code];
+    if (typeof text === "string") {
+      base[lang.code] = text;
+    }
+  }
+
+  return base;
+}
+
+function extractAmenities(value: RoomResponse["amenities"]): string[] {
+  if (!value) {
+    return [];
+  }
+
+  if (Array.isArray(value)) {
+    return value.filter((item): item is string => typeof item === "string");
+  }
+
+  if (typeof value === "object") {
+    const record = value as Record<string, unknown>;
+    for (const lang of languages) {
+      const list = record[lang.code];
+      if (Array.isArray(list) && list.length > 0) {
+        return list.filter((item): item is string => typeof item === "string");
+      }
+    }
+  }
+
+  return [];
+}
+
+export default function EditRoomPage() {
+  const params = useParams<{ id: string }>();
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
-    name: { tr: "", en: "", de: "", ru: "", pl: "" },
-    description: { tr: "", en: "", de: "", ru: "", pl: "" },
+    name: createEmptyLocalized(),
+    description: createEmptyLocalized(),
     image: "",
     price: "",
     capacity: "",
@@ -28,12 +93,79 @@ export default function CreateRoomPage() {
     order: "0",
     active: true,
   });
-
   const [amenityInput, setAmenityInput] = useState("");
+
+  const roomId = useMemo(() => params?.id ?? "", [params?.id]);
+
+  useEffect(() => {
+    if (!roomId) {
+      return;
+    }
+
+    const fetchRoom = async () => {
+      try {
+        const response = await fetch(`/api/admin/rooms/${roomId}`);
+        if (!response.ok) {
+          throw new Error("Room fetch failed");
+        }
+
+        const data: RoomResponse = await response.json();
+        const priceValue =
+          typeof data.price === "number"
+            ? String(data.price)
+            : data.price ?? "";
+        const orderValue =
+          typeof data.order === "number"
+            ? String(data.order)
+            : data.order ?? "0";
+
+        setFormData({
+          name: normalizeLocalized(data.name),
+          description: normalizeLocalized(data.description),
+          image: data.image ?? "",
+          price: priceValue,
+          capacity: data.capacity ?? "",
+          size: data.size ?? "",
+          amenities: extractAmenities(data.amenities),
+          order: orderValue,
+          active: data.active !== false,
+        });
+      } catch (error) {
+        console.error("Error fetching room:", error);
+        toast.error("Oda bilgileri yüklenemedi");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRoom();
+  }, [roomId]);
+
+  const addAmenity = () => {
+    if (amenityInput.trim()) {
+      setFormData((prev) => ({
+        ...prev,
+        amenities: [...prev.amenities, amenityInput.trim()],
+      }));
+      setAmenityInput("");
+    }
+  };
+
+  const removeAmenity = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      amenities: prev.amenities.filter((_, i) => i !== index),
+    }));
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    if (!roomId) {
+      toast.error("Geçersiz oda bilgisi");
+      return;
+    }
+
+    setSubmitting(true);
 
     try {
       const amenitiesPayload = languages.reduce<Record<string, string[]>>(
@@ -44,8 +176,8 @@ export default function CreateRoomPage() {
         {} as Record<string, string[]>
       );
 
-      const response = await fetch("/api/admin/rooms", {
-        method: "POST",
+      const response = await fetch(`/api/admin/rooms/${roomId}`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
@@ -54,35 +186,26 @@ export default function CreateRoomPage() {
       });
 
       if (response.ok) {
-        toast.success("Oda başarıyla oluşturuldu!");
+        toast.success("Oda başarıyla güncellendi!");
         router.push("/admin/rooms");
       } else {
-        toast.error("Oda oluşturulamadı!");
+        toast.error("Oda güncellenemedi!");
       }
     } catch (error) {
-      console.error("Error creating room:", error);
+      console.error("Error updating room:", error);
       toast.error("Bir hata oluştu!");
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
-  const addAmenity = () => {
-    if (amenityInput.trim()) {
-      setFormData({
-        ...formData,
-        amenities: [...formData.amenities, amenityInput.trim()],
-      });
-      setAmenityInput("");
-    }
-  };
-
-  const removeAmenity = (index: number) => {
-    setFormData({
-      ...formData,
-      amenities: formData.amenities.filter((_, i) => i !== index),
-    });
-  };
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-lg">Yükleniyor...</div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -94,11 +217,10 @@ export default function CreateRoomPage() {
           <ArrowLeft size={20} />
           Geri Dön
         </Link>
-        <h1 className="text-2xl font-bold">Yeni Oda Ekle</h1>
+        <h1 className="text-2xl font-bold">Odayı Düzenle</h1>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Multi-language Name */}
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-lg font-semibold mb-4">Oda İsmi (Çok Dilli)</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -110,22 +232,21 @@ export default function CreateRoomPage() {
                 <input
                   type="text"
                   required
-                  value={formData.name[lang.code as keyof typeof formData.name]}
+                  value={formData.name[lang.code]}
                   onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      name: { ...formData.name, [lang.code]: e.target.value },
-                    })
+                    setFormData((prev) => ({
+                      ...prev,
+                      name: { ...prev.name, [lang.code]: e.target.value },
+                    }))
                   }
                   className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder={`Örn: Deluxe Room (${lang.name})`}
+                  placeholder={`Örn: Suite Room (${lang.name})`}
                 />
               </div>
             ))}
           </div>
         </div>
 
-        {/* Multi-language Description */}
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-lg font-semibold mb-4">Açıklama (Çok Dilli)</h2>
           <div className="space-y-4">
@@ -137,19 +258,15 @@ export default function CreateRoomPage() {
                 <textarea
                   required
                   rows={3}
-                  value={
-                    formData.description[
-                      lang.code as keyof typeof formData.description
-                    ]
-                  }
+                  value={formData.description[lang.code]}
                   onChange={(e) =>
-                    setFormData({
-                      ...formData,
+                    setFormData((prev) => ({
+                      ...prev,
                       description: {
-                        ...formData.description,
+                        ...prev.description,
                         [lang.code]: e.target.value,
                       },
-                    })
+                    }))
                   }
                   className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder={`Oda açıklaması (${lang.name})`}
@@ -159,7 +276,6 @@ export default function CreateRoomPage() {
           </div>
         </div>
 
-        {/* Basic Info */}
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-lg font-semibold mb-4">Temel Bilgiler</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -172,7 +288,7 @@ export default function CreateRoomPage() {
                 required
                 value={formData.image}
                 onChange={(e) =>
-                  setFormData({ ...formData, image: e.target.value })
+                  setFormData((prev) => ({ ...prev, image: e.target.value }))
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="https://example.com/image.jpg"
@@ -189,10 +305,10 @@ export default function CreateRoomPage() {
                 step="0.01"
                 value={formData.price}
                 onChange={(e) =>
-                  setFormData({ ...formData, price: e.target.value })
+                  setFormData((prev) => ({ ...prev, price: e.target.value }))
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="2500"
+                placeholder="2800"
               />
             </div>
 
@@ -205,7 +321,7 @@ export default function CreateRoomPage() {
                 required
                 value={formData.capacity}
                 onChange={(e) =>
-                  setFormData({ ...formData, capacity: e.target.value })
+                  setFormData((prev) => ({ ...prev, capacity: e.target.value }))
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="2 Kişi"
@@ -221,10 +337,10 @@ export default function CreateRoomPage() {
                 required
                 value={formData.size}
                 onChange={(e) =>
-                  setFormData({ ...formData, size: e.target.value })
+                  setFormData((prev) => ({ ...prev, size: e.target.value }))
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="35 m²"
+                placeholder="45 m²"
               />
             </div>
 
@@ -236,7 +352,7 @@ export default function CreateRoomPage() {
                 type="number"
                 value={formData.order}
                 onChange={(e) =>
-                  setFormData({ ...formData, order: e.target.value })
+                  setFormData((prev) => ({ ...prev, order: e.target.value }))
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="0"
@@ -249,7 +365,7 @@ export default function CreateRoomPage() {
                   type="checkbox"
                   checked={formData.active}
                   onChange={(e) =>
-                    setFormData({ ...formData, active: e.target.checked })
+                    setFormData((prev) => ({ ...prev, active: e.target.checked }))
                   }
                   className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
@@ -261,7 +377,6 @@ export default function CreateRoomPage() {
           </div>
         </div>
 
-        {/* Amenities */}
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-lg font-semibold mb-4">Özellikler</h2>
           <div className="flex gap-2 mb-4">
@@ -269,7 +384,12 @@ export default function CreateRoomPage() {
               type="text"
               value={amenityInput}
               onChange={(e) => setAmenityInput(e.target.value)}
-              onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addAmenity())}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  addAmenity();
+                }
+              }}
               className="flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Özellik ekle (örn: WiFi, Klima, TV)"
             />
@@ -284,7 +404,7 @@ export default function CreateRoomPage() {
           <div className="flex flex-wrap gap-2">
             {formData.amenities.map((amenity, index) => (
               <span
-                key={index}
+                key={`${amenity}-${index}`}
                 className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full flex items-center gap-2"
               >
                 {amenity}
@@ -300,7 +420,6 @@ export default function CreateRoomPage() {
           </div>
         </div>
 
-        {/* Submit Button */}
         <div className="flex justify-end gap-4">
           <Link
             href="/admin/rooms"
@@ -310,10 +429,10 @@ export default function CreateRoomPage() {
           </Link>
           <button
             type="submit"
-            disabled={loading}
+            disabled={submitting}
             className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
           >
-            {loading ? "Kaydediliyor..." : "Oda Ekle"}
+            {submitting ? "Kaydediliyor..." : "Odayı Güncelle"}
           </button>
         </div>
       </form>
