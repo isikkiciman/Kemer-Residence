@@ -4,6 +4,7 @@ import { Link } from "@/i18n/routing";
 import { Users, Maximize } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { getRooms } from "@/lib/roomsData";
+import RoomImageCarousel from "@/components/RoomImageCarousel";
 
 function getLocalizedValue(
   value: Record<string, string> | undefined,
@@ -127,15 +128,12 @@ export default async function RoomsPage({
                   key={room.id}
                   className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <div className="relative h-64">
-                    <Image
-                      src={room.image}
-                      alt={name || room.id}
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 90vw"
-                    />
-                  </div>
+                  <RoomImageCarousel
+                    images={room.images}
+                    fallbackImage={room.image}
+                    alt={name || room.id}
+                    className="h-64"
+                  />
 
                   <div className="p-6">
                     <h3 className="text-2xl font-bold mb-2">

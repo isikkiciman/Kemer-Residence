@@ -1,8 +1,8 @@
 import { Link } from "@/i18n/routing";
-import Image from "next/image";
 import { Users, Maximize } from "lucide-react";
 import { getTranslations, getLocale } from "next-intl/server";
 import { getRooms } from "@/lib/roomsData";
+import RoomImageCarousel from "@/components/RoomImageCarousel";
 
 function getLocalizedValue(
   value: Record<string, string> | undefined,
@@ -82,15 +82,13 @@ const FeaturedRooms = async () => {
                 key={room.id}
                 className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
               >
-                <div className="relative h-64 overflow-hidden">
-                  <Image
-                    src={room.image}
-                    alt={name || room.id}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
-                    sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 90vw"
-                  />
-                </div>
+                <RoomImageCarousel
+                  images={room.images}
+                  fallbackImage={room.image}
+                  alt={name || room.id}
+                  className="h-64"
+                  priority
+                />
                 <div className="p-6">
                   <h3 className="text-2xl font-serif font-semibold mb-2">
                     {name || room.id}
